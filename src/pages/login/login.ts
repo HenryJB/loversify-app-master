@@ -54,5 +54,9 @@ export class LoginPage {
   }
   
 
+  gotoSignup(){
+    this.navCtrl.push('SignupPage');
+  }
+
 
 }
