@@ -22,14 +22,14 @@
             </div>
 
 
-            <button  [disabled]="!form.valid" class="button button-full button-assertive" type="submit">Login</button>
+            <button [disabled]="!form.valid" class="button button-full button-assertive" type="submit">Login</button>
         </form>
 
     </div>
     <br/>
     <div class="mt-40 text-center text-light m-auto" style="max-width: 500px;">
         <h4 class="text-dark text-fat">Don't have an account?</h4>
-        <a class="button button-calm button-block">Sign Up</a>
+        <a class="button button-calm button-block" (click)="gotoSignup()">Sign Up</a>
     </div>
 
 
