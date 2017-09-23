@@ -1,0 +1,19 @@
+<ion-header>
+
+    <ion-navbar color="danger">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+        <ion-title>Categories</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list inset>
+        <button ion-item *ngFor="let category of categories" (click)="itemSelected($event, category)">
+          {{ category.title }}
+        </button>
+    </ion-list>
+</ion-content>
