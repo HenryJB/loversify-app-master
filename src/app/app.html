@@ -1,11 +1,15 @@
 <ion-menu [content]="content">
-    <ion-header>
-        <ion-toolbar>
-            <ion-title>Menu</ion-title>
-        </ion-toolbar>
-    </ion-header>
+
 
     <ion-content>
+        <div class="sidebar-profile">
+
+            <div class="sidebar-profile-avatar">
+                <img class="sidebar-profile-avatar-img" src="../assets/img/avatar.jpg" id="sidebar-dp" alt="Avatar" />
+            </div>
+            <div class="sidebar-profile-title">Alex Dev</div>
+        </div>
+
         <ion-list no-lines>
             <button menuClose ion-item detail-none *ngFor="let p of pages" (click)="openPage(p)">
                <ion-icon name="{{p.icon}}"></ion-icon>

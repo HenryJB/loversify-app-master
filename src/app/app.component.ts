@@ -21,7 +21,7 @@ export class MyApp {
       { title: 'Posts', component: 'CategoryPage' , icon :'paper'},
       { title: 'Favourites', component: 'ListPage' , icon :'heart'},
       { title: 'Resources', component: 'ListPage' , icon :'book'},
-      { title: 'Profile', component: 'ListPage' , icon :'contact'},
+      { title: 'Profile', component: 'ProfilePage' , icon :'contact'},
       { title: 'Help and Feedback', component: 'ListPage'  , icon :'help-buoy'},
       { title: 'Logout', component: 'LoginPage' , icon :'log-out'}
     ];
