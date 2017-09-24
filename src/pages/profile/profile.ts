@@ -5,21 +5,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-my-popover',
-  templateUrl: 'my-popover.html',
+  selector: 'page-profile',
+  templateUrl: 'profile.html',
 })
-export class MyPopoverPage {
+export class ProfilePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-
-  gotoProfile(){
-    this.navCtrl.push('ProfilePage');
-  }
-
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MyPopoverPage');
+    console.log('ionViewDidLoad ProfilePage');
   }
 
 }
