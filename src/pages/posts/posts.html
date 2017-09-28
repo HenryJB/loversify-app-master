@@ -1,7 +1,7 @@
 <ion-header>
 
     <ion-navbar color="danger">
-        <ion-title *ngIf="selectedCategory">{{selectedCategory.title}}</ion-title>
+        <ion-title>{{title}}</ion-title>
     </ion-navbar>
 
 </ion-header>
@@ -9,57 +9,9 @@
 
 <ion-content padding>
     <ion-list>
-        <ion-item (click)="showPostDetails()">
-            <ion-avatar item-start>
-                <img src="../assets/img/defaultthumb.png" class="custom-avatar">
-            </ion-avatar>
-            <h2>Finn</h2>
-            <h3>Don't Know What To Do!</h3>
-            <p>I've had a pretty messed up day. If we just...</p>
-        </ion-item>
-
-        <ion-item>
-            <ion-avatar item-start>
-                <img src="../assets/img/defaultthumb.png" class="custom-avatar">
-            </ion-avatar>
-            <h2>Finn</h2>
-            <h3>Don't Know What To Do!</h3>
-            <p>I've had a pretty messed up day. If we just...</p>
-        </ion-item>
-
-        <ion-item>
-            <ion-avatar item-start>
-                <img src="../assets/img/defaultthumb.png" class="custom-avatar">
-            </ion-avatar>
-            <h2>Finn</h2>
-            <h3>Don't Know What To Do!</h3>
-            <p>I've had a pretty messed up day. If we just...</p>
-        </ion-item>
-
-        <ion-item>
-            <ion-avatar item-start>
-                <img src="../assets/img/defaultthumb.png" class="custom-avatar">
-            </ion-avatar>
-            <h2>Finn</h2>
-            <h3>Don't Know What To Do!</h3>
-            <p>I've had a pretty messed up day. If we just...</p>
-        </ion-item>
-
-        <ion-item>
-            <ion-avatar item-start>
-                <img src="../assets/img/defaultthumb.png" class="custom-avatar">
-            </ion-avatar>
-            <h2>Finn</h2>
-            <h3>Don't Know What To Do!</h3>
-            <p>I've had a pretty messed up day. If we just...</p>
-        </ion-item>
-        <ion-item>
-            <ion-avatar item-start>
-                <img src="../assets/img/defaultthumb.png" class="custom-avatar">
-            </ion-avatar>
-            <h2>Finn</h2>
-            <h3>Don't Know What To Do!</h3>
-            <p>I've had a pretty messed up day. If we just...</p>
+        <ion-item *ngFor="let post of posts" (click)="showPostDetails(post.id)">
+            <h2>{{post?.title}}</h2>
+            <p>{{post?.description | striphtml }}</p>
         </ion-item>
     </ion-list>
 
