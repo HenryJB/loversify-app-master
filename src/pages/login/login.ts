@@ -39,7 +39,6 @@ export class LoginPage {
             this.rootPage = HomePage;
             this.navCtrl.setRoot(HomePage);
             this._authService.saveToken('token', resp.data.token);
-            this._authService.saveUser(resp.user);
             loader.dismiss();
           } else {
             loader.dismiss();
