@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-
+import { IonicPage, NavController, ToastController, NavParams } from 'ionic-angular';
+import { CategoryProvider } from '../../providers/category/category';
+import { SharedProvider } from '../../providers/shared/shared';
+import { ISubscription } from "rxjs/Subscription";
+import { AuthProvider } from '../../providers/auth/auth';
 
 @IonicPage()
 @Component({
@@ -10,35 +12,77 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CategoryPage {
 
-  areas: string[];
+  
   items = [];
-
+  categories: Array<any>;
+  subscription: ISubscription;
+  subCategory;
+  subCategoryName: undefined;
   
-  categories: Array<{title: string}>;
-  
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public _categoryService: CategoryProvider,
+    public _sharedService: SharedProvider,
+    public toastCtrl: ToastController
+  ) { this.subCategory = this.navParams.get('subCategory')}
 
-    
-    this.areas = ['Love', 'Dating', 'Relationship', 'Couples Night', 'Sex', 'Honeymoon',
-    'Marriage', 'Courtship', 'Romance', 'Lovers'];
-
-    this.categories = [];
-    for (let i = 1; i < 11; i++) {
-      this.categories.push({
-        title:  this.areas[Math.floor(Math.random() * this.areas.length)]
-      });
+  ionViewDidLoad() {
+    if (this.subCategory) {
+      this.getSubCategories(this.subCategory);
+    } else {
+      this.getCategories();
     }
-
-    
-    
   }
 
-  itemSelected(event, item){
-    
-    this.navCtrl.push('PostsPage', {
-      title: item
-    });
+  getCategories() {
+    let loader = this._sharedService.loader();
+    loader.present();
+    this.subscription = this._categoryService.getCategories()
+    .subscribe((resp) => {
+     loader.dismiss();
+       if (resp.success) {
+         this.categories = resp.data;
+       }
+    }, err => {
+      loader.dismiss();
+      this._sharedService.toaster('internal server error');
+   })
   }
+
+  getSubCategories(subCategory) {
+    let loader = this._sharedService.loader();
+    loader.present();
+    this.subscription = this._categoryService.getSubCategories(subCategory.id)
+    .subscribe((resp) => {
+     loader.dismiss();
+       if (resp.success) {
+         console.log(resp)
+         this.categories = resp.data;
+       }
+    }, err => {
+      loader.dismiss();
+      this._sharedService.toaster('internal server error');
+   })
+  }
+
+  itemSelected(event, item) {
+    this.subCategoryName = item.name;
+    if (item.has_children > 0) {
+      this.navCtrl.push('CategoryPage', { subCategory: item })  
+    } else {
+        this.navCtrl.push('PostsPage', {
+          category: item
+        });
+    }
+  }
+
+
+  onPageWillLeave() {
+    this.subscription.unsubscribe();
+  }
+
+
 
   // doInfinite(infiniteScroll) {
   //   console.log('Begin async operation');
@@ -54,13 +98,4 @@ export class CategoryPage {
   //     infiniteScroll.complete();
   //   }, 500);
   // }
-
-  
-
-
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CategoryPage');
-  }
-
 }

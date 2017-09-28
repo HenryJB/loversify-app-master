@@ -1,7 +1,7 @@
 <ion-header>
 
     <ion-navbar color="danger">
-        <ion-title>Postdetail</ion-title>
+        <ion-title>{{details?.title}}</ion-title>
     </ion-navbar>
 
 </ion-header>
@@ -14,44 +14,49 @@
 
         <ion-item>
 
-            <h2>Marty McFly</h2>
+            <h2>{{details?.title}}</h2>
 
         </ion-item>
 
         <img src="../assets/img/card-saopaolo.jpg">
 
         <ion-card-content>
-            <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>
+            <p [innerHtml]="details?.description"></p>
         </ion-card-content>
+
+        <ion-card-content>
+            <p [innerHtml]="details?.posts[0]"></p>
+        </ion-card-content>
+
 
         <ion-row>
             <ion-col>
-                <button ion-button icon-left clear>
-                <ion-icon name="heart" color="danger"></ion-icon>
-               
+                <button ion-button icon-left clear  (click)="like()">
+                 <ion-icon [name]="userMetalResponse?.is_like == 1? 'md-heart' : 'ios-heart-outline' " color="danger"></ion-icon>
+                        
               </button>
             </ion-col>
-            <!--<ion-col>
-                <button ion-button icon-left clear small>
-                <ion-icon name="text"></ion-icon>
-                <div>4 Comments</div>
-              </button>
-            </ion-col> -->
             <ion-col>
-                <ion-fab right bottom mini>
-                    <button ion-fab color="danger" mini><ion-icon name="share"></ion-icon></button>
-                    <ion-fab-list side="left">
-                        <button ion-fab color="primary"><ion-icon name="logo-facebook"></ion-icon></button>
-                        <button ion-fab color="primary"><ion-icon name="logo-twitter"></ion-icon></button>
-                        <button ion-fab color="secondary"><ion-icon name="logo-whatsapp"></ion-icon></button>
-
-                    </ion-fab-list>
-
-                </ion-fab>
+                <button ion-button icon-right clear (click)="copy()">
+                <ion-icon name="copy"></ion-icon>
+              </button>
             </ion-col>
         </ion-row>
 
+        
     </ion-card>
 
+    
+
+    <ion-fab right bottom>
+            <button ion-fab color="danger"><ion-icon name="share"></ion-icon></button>
+            <ion-fab-list side="left">
+                <button ion-fab color="primary" (click)="shareViaFacebook()"><ion-icon name="logo-facebook"></ion-icon></button>
+                <button ion-fab color="primary" (click)="shareViaTwitter()"><ion-icon name="logo-twitter"></ion-icon></button>
+                <button ion-fab color="secondary" (click)="shareViaWhatsApp()"><ion-icon name="logo-whatsapp"></ion-icon></button>
+
+            </ion-fab-list>
+
+        </ion-fab>
 
 </ion-content>

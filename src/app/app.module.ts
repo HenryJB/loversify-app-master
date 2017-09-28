@@ -9,7 +9,11 @@ import { AuthProvider } from '../providers/auth/auth';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import { HomePage } from '../pages/home/home';
 import { HomePageModule } from '../pages/home/home.module';
+import { CategoryPageModule } from '../pages/category/category.module';
+import { CategoryPage } from '../pages/category/category';
 import { SharedProvider } from '../providers/shared/shared';
+import { CategoryProvider } from '../providers/category/category';
+import { PostsProvider } from '../providers/posts/posts';
 
 
 export function getAuthHttp(http) {
@@ -23,6 +27,7 @@ export function getAuthHttp(http) {
   }), http);
 }
 
+
 @NgModule({
   declarations: [
     MyApp
@@ -30,13 +35,15 @@ export function getAuthHttp(http) {
   imports: [
     BrowserModule,
     HomePageModule,
+    CategoryPageModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    CategoryPage
   ],
   providers: [
     StatusBar,
@@ -44,7 +51,9 @@ export function getAuthHttp(http) {
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     { provide: AuthHttp, useFactory: getAuthHttp, deps: [Http] },
     SharedProvider,
-    AuthProvider
+    AuthProvider,
+    CategoryProvider,
+    PostsProvider
   ]
 })
 export class AppModule {}
