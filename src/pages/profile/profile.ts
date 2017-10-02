@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController,PopoverController, NavParams } from 'ionic-angular';
 
 
 
@@ -10,11 +10,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ProfilePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private popoverCtrl:PopoverController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
   }
+
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create('MyPopoverPage');
+    popover.present({
+      ev: myEvent
+    });
+}
 
 }
