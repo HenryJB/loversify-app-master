@@ -10,10 +10,15 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="bg-black" padding>
     <ion-list>
-        <button ion-item *ngFor="let category of categories" (click)="itemSelected($event, category)">
+        <button class="lightred" ion-item *ngFor="let category of categories" (click)="itemSelected($event, category)">
           {{ category.name }}
         </button>
     </ion-list>
 </ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <img src="../assets/img/banner1.png" />
+    </ion-toolbar>
+</ion-footer>

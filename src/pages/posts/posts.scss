@@ -8,4 +8,24 @@ page-posts {
         margin-left: auto;
         margin-right: auto;
     }
+    .bg-black {
+        background-color: #0C0000 !important
+    }
+    ion-item {
+        background: rgba(245, 238, 237, 0.61);
+        background: -moz-linear-gradient(45deg, rgba(245, 238, 237, 0.61) 0%, rgba(227, 226, 220, 1) 100%);
+        background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(245, 238, 237, 0.61)), color-stop(100%, rgba(227, 226, 220, 1)));
+        background: -webkit-linear-gradient(45deg, rgba(245, 238, 237, 0.61) 0%, rgba(227, 226, 220, 1) 100%);
+        background: -o-linear-gradient(45deg, rgba(245, 238, 237, 0.61) 0%, rgba(227, 226, 220, 1) 100%);
+        background: -ms-linear-gradient(45deg, rgba(245, 238, 237, 0.61) 0%, rgba(227, 226, 220, 1) 100%);
+        background: linear-gradient(45deg, rgba(245, 238, 237, 0.61) 0%, rgba(227, 226, 220, 1) 100%);
+    }
+    ion-item h2 {
+        font-size: 16px !important;
+        color: #E44646 !important;
+    }
+    ion-item p {
+        text-align: left !important;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
 }
