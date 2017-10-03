@@ -18,6 +18,10 @@ export class MyPopoverPage {
     this.navCtrl.push('ProfilePage');
   }
 
+  gotoPosts() {
+    this.navCtrl.push('PostsPage');
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyPopoverPage');
   }
