@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, PopoverController, NavParams } from 'ionic-angular';
 import { PostsProvider } from '../../providers/posts/posts';
 import { ISubscription } from "rxjs/Subscription";
 import { SharedProvider } from '../../providers/shared/shared';
@@ -24,7 +24,8 @@ export class PostsPage {
      public navParams: NavParams,
      public _postsService: PostsProvider,
      public _sharedService: SharedProvider,
-     public _authProvider: AuthProvider
+     public _authProvider: AuthProvider,
+     public popoverCtrl: PopoverController
     ) {
       this.selectedCategory = navParams.get('category');
       this.title = this.selectedCategory.name;
@@ -47,6 +48,13 @@ export class PostsPage {
           loader.dismiss();
           this._sharedService.toaster('internal server error');
     })
+  }
+
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create('MyPopoverPage');
+    popover.present({
+      ev: myEvent
+    });
   }
 
   
