@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, PopoverController } from 'ionic-angular';
+import { IonicPage, PopoverController, ModalController } from 'ionic-angular';
+import { SearchPage } from '../search/search'
 
 @IonicPage()
 @Component({
@@ -8,7 +9,7 @@ import { IonicPage, PopoverController } from 'ionic-angular';
 })
 export class HomePage {
   
-  constructor(public popoverCtrl: PopoverController) {
+  constructor(public popoverCtrl: PopoverController, public modalCtrl: ModalController) {
 
   }
 
@@ -17,6 +18,11 @@ export class HomePage {
       popover.present({
         ev: myEvent
       });
+  }
+
+  openSearch() {
+    const searchModal = this.modalCtrl.create(SearchPage)
+    searchModal.present();
   }
 
   

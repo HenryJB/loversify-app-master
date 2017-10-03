@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Rx';
 import { ToastController, LoadingController } from 'ionic-angular';
 
 /*
@@ -11,6 +12,7 @@ import { ToastController, LoadingController } from 'ionic-angular';
 */
 @Injectable()
 export class SharedProvider {
+  private host = 'http://app.loversify.com/api';
 
   constructor(
     public http: Http, 
@@ -34,6 +36,24 @@ export class SharedProvider {
       position: paramsPosition
     });
     toast.present();
+  }
+ 
+  viewTitle(params: string) : Observable<any> {
+    return this.http.get(`${this.host}/pages/view-title/?title=${params}`)
+    .map((res:Response) => res.json())
+    .catch((error:any) => Observable.throw(error.json().error || 'server error'));
+  }
+
+  viewTitleMenu(id) : Observable<any> {
+    return this.http.get(`${this.host}/pages/find/?params[parent]=${id}`)
+    .map((res:Response) => res.json())
+    .catch((error:any) => Observable.throw(error.json().error || 'server error'));
+  }
+
+  submitMessage(postParams) : Observable<any> {
+    return this.http.post(`${this.host}/default/contact`, postParams)
+    .map((res:Response) => res.json()).debounceTime(200).distinctUntilChanged()
+    .catch((error:any) => Observable.throw(error.json().error || 'server error'));
   }
 
 }

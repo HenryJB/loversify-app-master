@@ -57,4 +57,12 @@ export class PostsProvider {
     .map((res:Response) => res.json())
     .catch((error:any) => Observable.throw(error.json().error || 'server error'));
   }
+
+
+  searchPost(postParams) : Observable<any> {
+    return this.http.get(`${this.host}/posts/search/?title=${postParams}`)
+    .map((res:Response) => res.json())
+    .catch((error:any) => Observable.throw(error.json().error || 'server error'));
+  }
+
 }

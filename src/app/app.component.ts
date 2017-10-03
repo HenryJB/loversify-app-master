@@ -27,9 +27,9 @@ export class MyApp {
     this.pages = [
       { title: 'Posts', component: 'CategoryPage' , icon :'paper'},
       { title: 'Favourites', component: 'ListPage' , icon :'heart'},
-      { title: 'Resources', component: 'ListPage' , icon :'book'},
+      // { title: 'Resources', component: 'ListPage' , icon :'book'},
       { title: 'Profile', component: 'ProfilePage' , icon :'contact'},
-      { title: 'Help and Feedback', component: 'ListPage'  , icon :'help-buoy'},
+      { title: 'Help and Feedback', component: 'HelpPage'  , icon :'help-buoy'},
       { title: 'Logout', component: 'LoginPage' , icon :'log-out'}
     ];
 
