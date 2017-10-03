@@ -6,6 +6,7 @@ import { SharedProvider } from '../../providers/shared/shared';
 import { AuthProvider } from '../../providers/auth/auth';
 
 
+
 @IonicPage()
 @Component({
   selector: 'page-posts',

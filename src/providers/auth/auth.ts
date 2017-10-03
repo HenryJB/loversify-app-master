@@ -31,6 +31,18 @@ export class AuthProvider {
 			.catch((error:any) => Observable.throw(error.json().error || 'server error'));
   }
 
+  update(accountInfo: any) : Observable<any> {
+		return this.http.post(`${this.host}/users/update`, accountInfo)
+			.map((res:Response) => res.json())
+			.catch((error:any) => Observable.throw(error.json().error || 'server error'));
+  }
+
+  getContries() : Observable<any> {
+		return this.http.get(`assets/countries.json`)
+			.map((res:Response) => res.json())
+			.catch((error:any) => Observable.throw(error.json().error || 'server error'));
+  }
+
   loggedIn() {
     return tokenNotExpired();
   }

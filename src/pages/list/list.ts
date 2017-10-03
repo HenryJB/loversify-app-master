@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams , IonicPage} from 'ionic-angular';
+import { CategoryProvider } from '../../providers/category/category';
+import { SharedProvider } from '../../providers/shared/shared';
+import { PostsProvider } from '../../providers/posts/posts';
+import { ISubscription } from "rxjs/Subscription";
+import { AuthProvider } from '../../providers/auth/auth';
+import { PostdetailPage } from '../../pages/postdetail/postdetail';
+
 
 @IonicPage()
 @Component({
@@ -9,30 +16,47 @@ import { NavController, NavParams , IonicPage} from 'ionic-angular';
 export class ListPage {
   selectedItem: any;
   icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+  items: Array<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public _postsService: PostsProvider,
+    public _sharedService: SharedProvider,
+    public _authProvider: AuthProvider
+  ) {}
 
-    // Let's populate this page with some filler content for funzies
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
+  subscription: ISubscription;
 
-    this.items = [];
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+
+
+  ionViewDidLoad() {
+    this.getFavouritePosts();
   }
 
-  itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(ListPage, {
-      item: item
-    });
+
+  getFavouritePosts() {
+    let loader = this._sharedService.loader();
+    loader.present();
+    this.subscription = this._postsService.favourite(this._authProvider.currentUser().id)
+    .subscribe((resp) => {
+      loader.dismiss();
+        if (resp.success) {
+          this.items = resp.data;
+        }
+      }, err => {
+          loader.dismiss();
+          this._sharedService.toaster('internal server error');
+    })
   }
+
+ 
+
+  openPost(item) {
+    let userId = this._authProvider.currentUser().id;
+    this.navCtrl.push('PostdetailPage',  {userMeta: { user: userId, post: item.post.id } });
+  }
+
+
+  
 }

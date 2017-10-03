@@ -57,7 +57,6 @@ export class CategoryPage {
     .subscribe((resp) => {
      loader.dismiss();
        if (resp.success) {
-         console.log(resp)
          this.categories = resp.data;
        }
     }, err => {
