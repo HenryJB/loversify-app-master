@@ -25,7 +25,7 @@
         </ion-card-content>
 
         <ion-card-content>
-            <p [innerHtml]="details?.posts[0]"></p>
+            <p [innerHtml]="details?.posts[currentPage]"></p>
         </ion-card-content>
         <ion-card-content>
             <img src="../assets/img/banner1.png" />
@@ -47,6 +47,14 @@
 
 
     </ion-card>
+
+     <div class="pl-10 pr-10">
+            <div class="button-bar">
+                <button color="danger" [disabled]="currentPage==0" (click)="prev()">Prev</button>
+                <button color="danger" [disabled]="!((size-1) > 1 && (currentPage) != (size-1))" (click)="next()">Next</button>
+            </div>
+    
+        </div>
 
 
 
