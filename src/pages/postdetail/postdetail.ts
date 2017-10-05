@@ -25,6 +25,11 @@ export class PostdetailPage {
   subscription: ISubscription;
   details: any;
   userMetalResponse: any;
+  currentPage: number = 0;
+  size: number = 0;
+
+
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -62,6 +67,7 @@ export class PostdetailPage {
     .subscribe((resp) => {
       if (resp.success) {
         this.details = resp.data;
+        this.size = resp.data.posts.length;
         loader.dismiss();
       }
     }, err => {
@@ -142,6 +148,14 @@ export class PostdetailPage {
           this._sharedService.toaster('operation failed');
         }
       );
+  }
+
+  next() {
+    this.currentPage++;
+  }
+
+  prev() {
+    this.currentPage--;
   }
   
 }

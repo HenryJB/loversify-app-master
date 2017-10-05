@@ -9,11 +9,13 @@ import { AuthProvider } from '../providers/auth/auth';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import { HomePage } from '../pages/home/home';
 import { HomePageModule } from '../pages/home/home.module';
+import { SearchPageModule } from '../pages/search/search.module';
 import { CategoryPageModule } from '../pages/category/category.module';
 import { CategoryPage } from '../pages/category/category';
 import { SharedProvider } from '../providers/shared/shared';
 import { CategoryProvider } from '../providers/category/category';
 import { PostsProvider } from '../providers/posts/posts';
+import { AdMobFree } from '@ionic-native/admob-free';
 
 
 export function getAuthHttp(http) {
@@ -36,6 +38,7 @@ export function getAuthHttp(http) {
     BrowserModule,
     HomePageModule,
     CategoryPageModule,
+    SearchPageModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
   ],
@@ -53,7 +56,8 @@ export function getAuthHttp(http) {
     SharedProvider,
     AuthProvider,
     CategoryProvider,
-    PostsProvider
+    PostsProvider,
+    AdMobFree
   ]
 })
 export class AppModule {}

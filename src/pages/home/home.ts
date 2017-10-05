@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, PopoverController } from 'ionic-angular';
+import { IonicPage, PopoverController, ModalController, NavController } from 'ionic-angular';
+import { SearchPage } from '../search/search';
+import { SharedProvider } from '../../providers/shared/shared';
+import { AuthProvider } from '../../providers/auth/auth';
 
 @IonicPage()
 @Component({
@@ -7,9 +10,16 @@ import { IonicPage, PopoverController } from 'ionic-angular';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  
-  constructor(public popoverCtrl: PopoverController) {
-
+ 
+  blocks: Array<any>;
+  constructor(
+    public popoverCtrl: PopoverController, 
+    public modalCtrl: ModalController,
+    public _sharedService: SharedProvider,
+    public _authService: AuthProvider,
+    public navCtrl: NavController
+  ) {
+    this._sharedService.showBanner();
   }
 
   presentPopover(myEvent) {
@@ -18,6 +28,32 @@ export class HomePage {
         ev: myEvent
       });
   }
+
+  ionViewDidLoad() {
+    if (this._authService.loggedIn()) {
+      let loader = this._sharedService.loader();
+      loader.present();
+      let user = this._authService.currentUser();
+      this._sharedService.getWelcomeMessage(user.birthday, user.country, user.gender, user.relationship_status)
+      .subscribe((res) => {
+        loader.dismiss();
+        this.blocks = res.data || [];
+        
+      }, err => {
+        loader.dismiss();
+        this._sharedService.toaster('Something went wrong but you can continue');
+      })
+    } else {
+      this._sharedService.toaster('Please login');
+      this.navCtrl.setRoot('LoginPage'); 
+    }
+  }
+
+  openSearch() {
+    const searchModal = this.modalCtrl.create(SearchPage)
+    searchModal.present();
+  }
+
 
   
 

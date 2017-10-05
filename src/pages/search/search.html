@@ -1,0 +1,33 @@
+<!--
+  Generated template for the SearchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <button ion-button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-searchbar
+    [(ngModel)]="myInput"
+    [showCancelButton]="shouldShowCancel"
+    (ionInput)="onInput($event)"
+    (ionCancel)="onCancel($event)" class="danger">
+  </ion-searchbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list *ngIf="hasResult">
+        <ion-item *ngFor="let post of search" (click)="showPostDetails(post.id)">
+            <h2>{{post?.title}}</h2>
+        </ion-item>
+    </ion-list>
+
+    <div *ngIf="!hasResult && !justVisit">
+      <h3>Oh, my Love!</h3>
+      <p>sorry, your search didn't return any result. Still, we can write it for you.</p>
+      <button type="button" class="danger" (click)="goToContact()">Make a request</button>
+    </div>
+</ion-content>

@@ -28,6 +28,17 @@ export class PostsProvider {
 			.catch((error:any) => Observable.throw(error.json().error || 'server error'));
   }
 
+  getCategoryPostsScroll(page: number, id: string) : Observable<any> {
+		return this.http.get(`${this.host}/posts/find/?page=${page}&params[category]=${id}`)
+			.map((res:Response) => {
+        res['currentpage'] = res.headers.get('X-Pagination-Current-Page');
+        res['pagecount'] = res.headers.get('X-Pagination-Page-Count');
+        res['totalcount'] = res.headers.get('X-Pagination-Total-Count');
+        return res.json();
+      })
+			.catch((error:any) => Observable.throw(error.json().error || 'server error'));
+  }
+
   getPostMeta(userId, postId) : Observable<any> {
     return this.http.get(`${this.host}/posts/meta/?post=${postId}&user=${userId}`)
     .map((res:Response) => res.json())
@@ -57,4 +68,12 @@ export class PostsProvider {
     .map((res:Response) => res.json())
     .catch((error:any) => Observable.throw(error.json().error || 'server error'));
   }
+
+
+  searchPost(postParams) : Observable<any> {
+    return this.http.get(`${this.host}/posts/search/?title=${postParams}`)
+    .map((res:Response) => res.json())
+    .catch((error:any) => Observable.throw(error.json().error || 'server error'));
+  }
+
 }
