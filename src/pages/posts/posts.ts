@@ -17,6 +17,9 @@ export class PostsPage {
   title: string;
   subscription: ISubscription;
   posts: Array<any>;
+  currentPage: number = 1;
+  pageCount: number = 1;
+  pageSize: number = 0;
 
 
   constructor(
@@ -29,6 +32,7 @@ export class PostsPage {
     ) {
       this.selectedCategory = navParams.get('category');
       this.title = this.selectedCategory.name;
+      this._sharedService.showBanner();
   }
 
   ionViewDidLoad() {
@@ -44,6 +48,27 @@ export class PostsPage {
         if (resp.success) {
           this.posts = resp.data;
         }
+     }, err => {
+          loader.dismiss();
+          this._sharedService.toaster('internal server error');
+    })
+  }
+
+  doInfinite(event) {
+    this.currentPage++;
+    
+    let loader = this._sharedService.loader();
+    this.subscription = this._postsService.getCategoryPostsScroll(this.currentPage, this.selectedCategory.id)
+    .subscribe((resp) => {
+        if (resp.success) {
+          
+          
+          this.posts = this.posts.concat(resp.data);
+          this.pageCount = resp.pagecount;
+          this.pageSize = resp.totalcount;
+        }
+        event.complete();
+        event.enable( (this.pageSize > 0 && this.currentPage != this.pageCount) )
      }, err => {
           loader.dismiss();
           this._sharedService.toaster('internal server error');

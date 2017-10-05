@@ -31,6 +31,12 @@ export class AuthProvider {
 			.catch((error:any) => Observable.throw(error.json().error || 'server error'));
   }
 
+  signup(accountInfo: any) : Observable<any> {
+		return this.http.post(`${this.host}/default/sign-up`, accountInfo)
+			.map((res:Response) => res.json())
+			.catch((error:any) => Observable.throw(error.json().error || 'server error'));
+  }
+
   update(accountInfo: any) : Observable<any> {
 		return this.http.post(`${this.host}/users/update`, accountInfo)
 			.map((res:Response) => res.json())
@@ -50,6 +56,7 @@ export class AuthProvider {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('JWT');
   }
 
   tokenSubscription() {
@@ -67,9 +74,11 @@ export class AuthProvider {
 
   
   currentUser() {
-    let jwtHelper: JwtHelper = new JwtHelper();
-    let token = this.getToken('token');
-    return jwtHelper.decodeToken(token).uid;
+    if (this.loggedIn()) {
+      let jwtHelper: JwtHelper = new JwtHelper();
+      let token = this.getToken('token');
+      return jwtHelper.decodeToken(token).uid;
+    }
   }
 
 

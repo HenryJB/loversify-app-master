@@ -18,6 +18,7 @@ export class LoginPage {
     'password': ['', Validators.required]
   });
 
+  
   rootPage:any;
 
   constructor(
@@ -50,6 +51,10 @@ export class LoginPage {
           this._sharedService.toaster('internal server error');
       });
     })
+  }
+
+  ionViewDidLoad() {
+    this._authService.logout();
   }
   
 

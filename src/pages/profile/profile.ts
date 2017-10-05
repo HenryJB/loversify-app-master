@@ -79,8 +79,4 @@ export class ProfilePage {
       this._sharedService.toaster('Server Error');
     })
   }
-
-  
-
-
 }

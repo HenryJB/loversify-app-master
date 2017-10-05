@@ -3,6 +3,7 @@ import { Nav, NavController, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
+import { SharedProvider } from  '../providers/shared/shared';
 
 @Component({
   templateUrl: 'app.html'
@@ -10,7 +11,8 @@ import { AuthProvider } from '../providers/auth/auth';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = 'HomePage';
+
+  rootPage: any; 
 
   pages: Array<{title: string, component: any, icon: any}>;
   currentUser: any;
@@ -19,8 +21,14 @@ export class MyApp {
     public platform: Platform, 
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
-    public _authService: AuthProvider
+    public _authService: AuthProvider,
+    public _sharedService: SharedProvider
   ) {
+    if (this._authService.loggedIn()) {
+      this.rootPage = 'HomePage';
+    } else {
+      this.rootPage = 'LoginPage'
+    }
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -41,7 +49,10 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.currentUser = this._authService.currentUser();
+      if (this._authService.loggedIn()) {
+        this.currentUser = this._authService.currentUser();
+      }
+     this._sharedService.showBanner();
     });
   }
 
@@ -50,6 +61,8 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
+
 
   
 }

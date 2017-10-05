@@ -25,7 +25,10 @@ export class CategoryPage {
     public _categoryService: CategoryProvider,
     public _sharedService: SharedProvider,
     public toastCtrl: ToastController
-  ) { this.subCategory = this.navParams.get('subCategory')}
+  ) { 
+    this._sharedService.showBanner();
+    this.subCategory = this.navParams.get('subCategory');
+  }
 
   ionViewDidLoad() {
     if (this.subCategory) {

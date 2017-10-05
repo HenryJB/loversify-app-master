@@ -20,7 +20,6 @@
     <ion-list *ngIf="hasResult">
         <ion-item *ngFor="let post of search" (click)="showPostDetails(post.id)">
             <h2>{{post?.title}}</h2>
-            <p>{{post?.description | striphtml }}</p>
         </ion-item>
     </ion-list>
 

@@ -15,6 +15,7 @@ import { CategoryPage } from '../pages/category/category';
 import { SharedProvider } from '../providers/shared/shared';
 import { CategoryProvider } from '../providers/category/category';
 import { PostsProvider } from '../providers/posts/posts';
+import { AdMobFree } from '@ionic-native/admob-free';
 
 
 export function getAuthHttp(http) {
@@ -55,7 +56,8 @@ export function getAuthHttp(http) {
     SharedProvider,
     AuthProvider,
     CategoryProvider,
-    PostsProvider
+    PostsProvider,
+    AdMobFree
   ]
 })
 export class AppModule {}

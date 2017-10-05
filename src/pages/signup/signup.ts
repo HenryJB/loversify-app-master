@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, ToastController, IonicPage } from 'ionic-angular';
+import { Validators, FormBuilder } from '@angular/forms';
+import { AuthProvider } from '../../providers/auth/auth';
+import { SharedProvider } from '../../providers/shared/shared';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the SignupPage page.
@@ -15,11 +19,63 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SignupPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+// The account fields for the login form.
+private form = this.formBuilder.group({
+  'first_name': ['', Validators.required],
+  'last_name': ['', Validators.required],
+  'country': ['', Validators.required],
+  'email': ['', Validators.required],
+  'password': ['', Validators.required]
+});
+
+rootPage:any;
+countries: Array<any>;
+
+  constructor(
+    public navCtrl: NavController,
+    public toastCtrl: ToastController,
+    public formBuilder: FormBuilder,
+    public _sharedService: SharedProvider,
+    public _authService: AuthProvider
+  ) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SignupPage');
+
+    this.getCountries()
   }
 
+  getCountries() {
+    this._authService.getContries()
+    .subscribe((res) => {
+       this.countries = res
+    }, err => {
+      // caught error
+    })
+  }
+
+  backToLoagin() {
+    this.navCtrl.push('LoginPage')
+  }
+
+  signUp() {
+    let loader = this._sharedService.loader();
+    loader.present().then(() => {
+      this._authService.signup(this.form.value)
+        .subscribe((resp) => {
+          if (resp.success) {
+            this.rootPage = HomePage;
+            this.navCtrl.setRoot(HomePage);
+            this._authService.saveToken('token', resp.data.token);
+            loader.dismiss();
+          } else {
+            loader.dismiss();
+            this._sharedService.toaster('Wrong email and password');
+          }
+        }, (err) => {
+          // Unable to log in
+          loader.dismiss();
+          this._sharedService.toaster('internal server error');
+      });
+    })
+  }
 }
