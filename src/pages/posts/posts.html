@@ -10,6 +10,9 @@
 <ion-content class="bg-black" padding>
     <ion-list>
         <ion-item *ngFor="let post of posts" (click)="showPostDetails(post.id)">
+            <ion-avatar item-start>
+                <img src="../assets/img/defaultthumb.png" class="custom-avatar">
+            </ion-avatar>
             <h2>{{post?.title}}</h2>
             <p>{{post?.description | striphtml }}</p>
             <p><a>Read more</a></p>
