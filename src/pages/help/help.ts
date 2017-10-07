@@ -63,6 +63,15 @@ export class HelpPage {
     this.navCtrl.push('ContactPage')
   }
 
+  itemSelected(item) {
+    if (item.title == "About us") {
+      this.navCtrl.push('AboutPage');
+    } else {
+      this.navCtrl.push('HowToUsePage');
+    }
+    
+  }
+
 
 
 }
