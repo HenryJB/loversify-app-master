@@ -14,13 +14,11 @@ export class MyPopoverPage {
   }
 
 
-  gotoProfile(){
-    this.navCtrl.push('ProfilePage');
+  goto(page:string){
+    this.navCtrl.push(page);
   }
 
-  gotoPosts() {
-    this.navCtrl.push('PostsPage');
-  }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MyPopoverPage');

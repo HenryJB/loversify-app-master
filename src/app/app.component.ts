@@ -29,6 +29,7 @@ export class MyApp {
     } else {
       this.rootPage = 'LoginPage'
     }
+    splashScreen.show();
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -48,7 +49,7 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      //this.splashScreen.hide();
       if (this._authService.loggedIn()) {
         this.currentUser = this._authService.currentUser();
       }

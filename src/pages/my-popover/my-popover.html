@@ -1,17 +1,17 @@
 <ion-list>
-    <button ion-item detail-none>
-      <ion-icon name="paper" (click)="gotoPosts()"></ion-icon>
+    <button ion-item detail-none (click)="goto('CategoryPage')">
+      <ion-icon name="paper" ></ion-icon>
         Posts
       </button>
-    <button ion-item detail-none (click)="gotoProfile()">
+    <button ion-item detail-none (click)="goto('ProfilePage')">
        <ion-icon name="person"></ion-icon>
       Profile
       </button>
-    <button ion-item detail-none>
+    <button ion-item detail-none (click)="goto('ContactPage')">
       <ion-icon name="contacts"></ion-icon>
         Contact Us
       </button>
-    <button ion-item detail-none>
+    <button ion-item detail-none (click)="goto('LoginPage')">
        <ion-icon name="log-out"></ion-icon>
         Logout
       </button>

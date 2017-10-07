@@ -7,14 +7,14 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="bg-black" padding>
 
 
     <ion-card>
 
         <ion-item>
 
-            <h2>{{details?.title}}</h2>
+            <h2 class="post-title">{{details?.title}}</h2>
 
         </ion-item>
 
@@ -27,6 +27,16 @@
         <ion-card-content>
             <p [innerHtml]="details?.posts[currentPage]"></p>
         </ion-card-content>
+
+        <ion-row>
+            <div class="pl-10 pr-10">
+                <div class="button-bar">
+                    <button ion-button color="danger" round [disabled]="currentPage==0" (click)="prev()">Prev</button>
+                    <button ion-button color="danger" round [disabled]="!((size-1) > 1 && (currentPage) != (size-1))" (click)="next()">Next</button>
+                </div>
+
+            </div>
+        </ion-row>
         <ion-card-content>
             <img src="../assets/img/banner1.png" />
         </ion-card-content>
@@ -48,13 +58,7 @@
 
     </ion-card>
 
-     <div class="pl-10 pr-10">
-            <div class="button-bar">
-                <button color="danger" [disabled]="currentPage==0" (click)="prev()">Prev</button>
-                <button color="danger" [disabled]="!((size-1) > 1 && (currentPage) != (size-1))" (click)="next()">Next</button>
-            </div>
-    
-        </div>
+
 
 
 

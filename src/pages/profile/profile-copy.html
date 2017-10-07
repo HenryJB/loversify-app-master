@@ -1,0 +1,85 @@
+<ion-header>
+
+    <ion-navbar color="danger">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+        <ion-title>{{currentUser.first_name}} {{currentUser.last_name}}</ion-title>
+
+        <ion-buttons end>
+            <button ion-button icon-only clear (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+        </ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+<ion-content class="page page-profile">
+    <div class="hero hero-header bg-assertive text-light shad">
+        <div class="hero-header">
+            <div class="profile-avatar">
+                <img class="rounded avatar w-100" id="dp" src="../assets/img/avatar.jpg" alt="">
+            </div>
+        </div>
+        <div class="hero-title"></div>
+        <div class="hero-subtitle">...</div>
+    </div>
+    <div class="p-10  bg-light shad">
+        <form [formGroup]="userForm" (ngSubmit)="updateUser()" novalidate>
+            <div class="list p-20 pb-0 mb-0">
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">First Name</span>
+                    <input type="text" [(ngModel)]="currentUser.first_name"  formControlName="first_name" placeholder="First Name" >
+                </label>
+            </div>
+            <label class="item item-input item-floating-label">
+                    <span class="input-label">Last Name</span>
+                    <input type="text" [(ngModel)]="currentUser.last_name" formControlName="last_name"  placeholder="Last Name">
+                    </label>
+            <label class="item item-input item-floating-label">
+                    <span class="input-label">Email</span>
+                    <input type="email" [(ngModel)]="currentUser.email" formControlName="email"  placeholder="Email">
+                    </label>
+            <label class="item item-input item-floating-label">
+                    <span class="input-label">Username</span>
+                    <input type="text" [(ngModel)]="currentUser.username" formControlName="username"  placeholder="Username">
+                    </label>
+            <label class="item item-input item-floating-label">
+                    <span class="input-label">Phone</span>
+                    <input type="tel" [(ngModel)]="currentUser.phone"  formControlName="phone" placeholder="Phone">
+                    </label>
+            <label class="item item-input item-floating-label">
+                    <span class="input-label">Birth Day </span>
+                    <input type="date" [(ngModel)]="currentUser.birthday"  formControlName="birthday"  readonly="readonly">
+                    </label>
+            <label class="item item-input item-select ">
+                       <span class="input-label">Gender</span>
+                       <select name="gender" [(ngModel)]="currentUser.gender" formControlName="gender">
+                          <option >Select</option>
+                          <option value="male">Male</option>
+                          <option value="female">Female</option>
+                       </select>
+                    </label>
+            <label class="item item-input item-select ">
+                       <span class="input-label">Relationship Status</span>
+                       <select  [(ngModel)]="currentUser.relationship_status" formControlName="relationship_status">
+                          <option value="single">Single</option>
+                          <option value="married">Married</option>
+                          <option value="divorced">Divorced</option>
+                          <option value="dating">Dating/In a relationship</option>
+                       </select>
+                    </label>
+            <label class="item item-input item-select ">
+                         <span class="input-label">Country</span>
+                       <select formControlName="country"  [(ngModel)]="currentUser.country">
+                        <option>Country</option>
+                        <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
+                       </select>
+                    </label>
+
+            <button ion-button [disabled]="!userForm.valid">Save</button>
+
+
+        </form>
+    </div>
+</ion-content>

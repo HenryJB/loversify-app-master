@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Searchbar } from 'ionic-angular';
+import { IonicPage, NavController,PopoverController, NavParams, Searchbar } from 'ionic-angular';
 import { PostsProvider } from '../../providers/posts/posts';
 import { AuthProvider } from '../../providers/auth/auth';
-/**
- * Generated class for the SearchPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -20,6 +15,7 @@ export class SearchPage {
   justVisit: Boolean = true;
 
   constructor(
+    public popoverCtrl: PopoverController, 
      public navCtrl: NavController,
      public navParams: NavParams,
      public _postsService: PostsProvider,
@@ -45,12 +41,23 @@ export class SearchPage {
     })
   }
 
-  goToContact() {
-    this.navCtrl.push('contactPage')
+  goTo(page :string) {
+    this.navCtrl.push(page);
   }
 
   showPostDetails(id) {
     let userId = this._authProvider.currentUser().id;
     this.navCtrl.push('PostdetailPage',  {userMeta: { user: userId, post: id } });
   }
+
+
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create('MyPopoverPage');
+    popover.present({
+      ev: myEvent
+    });
+
+    
+  
+}
 }

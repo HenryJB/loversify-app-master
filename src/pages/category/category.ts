@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ToastController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, PopoverController, ModalController, ToastController, NavParams } from 'ionic-angular';
 import { CategoryProvider } from '../../providers/category/category';
+import { SearchPage } from '../search/search';
 import { SharedProvider } from '../../providers/shared/shared';
 import { ISubscription } from "rxjs/Subscription";
 import { AuthProvider } from '../../providers/auth/auth';
@@ -20,6 +21,8 @@ export class CategoryPage {
   subCategoryName: undefined;
   
   constructor(
+    public popoverCtrl: PopoverController, 
+    public modalCtrl: ModalController,
     public navCtrl: NavController, 
     public navParams: NavParams,
     public _categoryService: CategoryProvider,
@@ -83,6 +86,21 @@ export class CategoryPage {
   onPageWillLeave() {
     this.subscription.unsubscribe();
   }
+
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create('MyPopoverPage');
+    popover.present({
+      ev: myEvent
+    });
+
+    
+  
+}
+
+openSearch() {
+  const searchModal = this.modalCtrl.create(SearchPage)
+  searchModal.present();
+}
 
 
 

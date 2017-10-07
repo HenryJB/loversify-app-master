@@ -3,12 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SharedProvider } from '../../providers/shared/shared';
 import { AuthProvider } from '../../providers/auth/auth';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-/**
- * Generated class for the ContactPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
+
 
 @IonicPage()
 @Component({
