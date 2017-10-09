@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the HowToUsePage page.
+ * Generated class for the WhyIShouldSignupPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,16 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-how-to-use',
-  templateUrl: 'how-to-use.html',
+  selector: 'page-why-i-should-signup',
+  templateUrl: 'why-i-should-signup.html',
 })
-export class HowToUsePage {
+export class WhyIShouldSignupPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HowToUsePage');
+    console.log('ionViewDidLoad WhyIShouldSignupPage');
   }
 
 }

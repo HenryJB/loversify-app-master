@@ -62,5 +62,9 @@ export class LoginPage {
     this.navCtrl.push('SignupPage');
   }
 
+  goto(page:string){
+    this.navCtrl.push(page);
+  }
+
 
 }
