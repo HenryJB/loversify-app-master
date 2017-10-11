@@ -89,4 +89,13 @@ export class PostsPage {
     this.navCtrl.push('PostdetailPage',  {userMeta: { user: userId, post: id } });
   }
 
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+  }
+
 }

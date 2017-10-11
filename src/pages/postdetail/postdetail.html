@@ -7,7 +7,7 @@
 </ion-header>
 
 
-<ion-content class="bg-black" padding>
+<ion-content class="">
 
 
     <ion-card>
@@ -18,7 +18,7 @@
 
         </ion-item>
 
-        <img src="../assets/img/card-saopaolo.jpg">
+        <img src="assets/img/card-saopaolo.jpg">
 
         <ion-card-content>
             <p [innerHtml]="details?.description"></p>
@@ -28,32 +28,51 @@
             <p [innerHtml]="details?.posts[currentPage]"></p>
         </ion-card-content>
 
-        <ion-row>
+        <!-- <ion-row>
             <div class="pl-10 pr-10">
                 <div class="button-bar">
-                    <button ion-button color="danger" round [disabled]="currentPage==0" (click)="prev()">Prev</button>
-                    <button ion-button color="danger" round [disabled]="!((size-1) > 1 && (currentPage) != (size-1))" (click)="next()">Next</button>
+                    <button ion-button class="button button-calm icon-left ion-chevron-left" color="danger" round [disabled]="currentPage==0" (click)="prev()">Prev</button>
+
+                    <button ion-button class="button button-calm icon-right ion-chevron-right" color="danger" round [disabled]="!((size-1) > 1 && (currentPage) != (size-1))" (click)="next()">Next</button>
                 </div>
 
             </div>
-        </ion-row>
-        <ion-card-content>
-            <img src="../assets/img/banner1.png" />
-        </ion-card-content>
+        </ion-row> -->
+
 
         <ion-row>
             <ion-col>
-                <button ion-button icon-left clear (click)="like()">
-                 <ion-icon [name]="userMetalResponse?.is_like == 1? 'md-heart' : 'ios-heart-outline' " color="danger"></ion-icon>
-                        
-              </button>
+                <button ion-button icon-right clear color="danger" (click)="like()">
+                    <ion-icon  [name]="userMetalResponse?.is_like == 1? 'md-heart' : 'ios-heart-outline' "></ion-icon>
+                  </button>
             </ion-col>
             <ion-col>
-                <button ion-button icon-right clear (click)="copy()">
-                <ion-icon name="copy"></ion-icon>
-              </button>
+                <button ion-button icon-right clear color="danger" (click)="copy()">
+                    <ion-icon name="copy"></ion-icon>
+                    
+                  </button>
+            </ion-col>
+            <ion-col center>
+                <ion-fab right bottom>
+                    <button ion-fab mini color="danger"><ion-icon name="share"></ion-icon></button>
+                    <ion-fab-list side="left">
+                        <button ion-fab color="primary" (click)="shareViaFacebook()"><ion-icon name="logo-facebook"></ion-icon></button>
+                        <button ion-fab color="primary" (click)="shareViaTwitter()"><ion-icon name="logo-twitter"></ion-icon></button>
+                        <button ion-fab color="secondary" (click)="shareViaWhatsApp()"><ion-icon name="logo-whatsapp"></ion-icon></button>
+
+                    </ion-fab-list>
+
+                </ion-fab>
             </ion-col>
         </ion-row>
+
+        <ion-row class="centa">
+            <ion-col class="light-blu">
+                <button ion-button class="paging-btn prev" [disabled]="currentPage==0" (click)="prev()" color="danger">&laquo; Prev</button>
+                <button ion-button class="paging-btn next" [disabled]="!((size-1) > 1 && (currentPage) != (size-1))" (click)="next()" color="danger">Next &raquo;</button>
+            </ion-col>
+        </ion-row>
+
 
 
     </ion-card>
@@ -62,15 +81,6 @@
 
 
 
-    <ion-fab right bottom>
-        <button ion-fab color="danger"><ion-icon name="share"></ion-icon></button>
-        <ion-fab-list side="left">
-            <button ion-fab color="primary" (click)="shareViaFacebook()"><ion-icon name="logo-facebook"></ion-icon></button>
-            <button ion-fab color="primary" (click)="shareViaTwitter()"><ion-icon name="logo-twitter"></ion-icon></button>
-            <button ion-fab color="secondary" (click)="shareViaWhatsApp()"><ion-icon name="logo-whatsapp"></ion-icon></button>
 
-        </ion-fab-list>
-
-    </ion-fab>
 
 </ion-content>

@@ -58,6 +58,9 @@ export class SearchPage {
     });
 
     
-  
+}
+
+onCancel(){
+  this.navCtrl.push('CategoryPage');
 }
 }

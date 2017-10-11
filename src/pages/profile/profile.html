@@ -60,7 +60,7 @@
             <ion-item>
                 <ion-label floating>Gender</ion-label>
                 <ion-select name="gender" [(ngModel)]="currentUser.gender" formControlName="gender">
-                    <ion-option>Select</ion-option>
+
                     <ion-option value="male">Male</ion-option>
                     <ion-option value="female">Female</ion-option>
                 </ion-select>
@@ -81,7 +81,7 @@
             <ion-item>
                 <ion-label floating>Country</ion-label>
                 <ion-select formControlName="country" [(ngModel)]="currentUser.country">
-                    <ion-option>Country</ion-option>
+
                     <ion-option *ngFor="let country of countries" [value]="country.name">{{country.name}}</ion-option>
                 </ion-select>
             </ion-item>

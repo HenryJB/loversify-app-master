@@ -7,12 +7,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Clipboard } from '@ionic-native/clipboard';
 
-/**
- * Generated class for the PostdetailPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -157,5 +152,8 @@ export class PostdetailPage {
   prev() {
     this.currentPage--;
   }
+
+
+  
   
 }

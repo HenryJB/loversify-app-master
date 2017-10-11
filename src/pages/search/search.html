@@ -1,8 +1,6 @@
 <ion-header>
     <ion-navbar color="danger">
-        <button ion-button menuToggle>
-            <ion-icon name="menu"></ion-icon>
-          </button>
+
         <ion-title>Search</ion-title>
 
         <ion-buttons end>
@@ -16,7 +14,7 @@
       </button>
         </ion-buttons>
     </ion-navbar>
-    <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" class="danger">
+    <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="true" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" class="danger">
     </ion-searchbar>
     <!-- <button ion-button end>Cancel</button> -->
 </ion-header>
@@ -24,6 +22,9 @@
 <ion-content class="bg-black" padding>
     <ion-list *ngIf="hasResult">
         <ion-item *ngFor="let post of search" (click)="showPostDetails(post.id)">
+            <ion-avatar item-start>
+                <img src="assets/img/defaultthumb.png" class="custom-avatar">
+            </ion-avatar>
             <h2 text-wrap>{{post?.title}}</h2>
             <p><a>Read more</a></p>
         </ion-item>
