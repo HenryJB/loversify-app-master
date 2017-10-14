@@ -2,12 +2,15 @@ import { Component } from '@angular/core';
 import { IonicPage, PopoverController, ModalController, NavController } from 'ionic-angular';
 import { SearchPage } from '../search/search';
 import { SharedProvider } from '../../providers/shared/shared';
+//import { AdmobproProvider } from '../../providers/admobpro/admobpro';
 import { AuthProvider } from '../../providers/auth/auth';
 
 @IonicPage()
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  //providers: [AdmobproProvider]
+ 
 })
 export class HomePage {
  
@@ -17,9 +20,12 @@ export class HomePage {
     public modalCtrl: ModalController,
     public _sharedService: SharedProvider,
     public _authService: AuthProvider,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    //public adMobService : AdmobproProvider
   ) {
+    //this.adMobService.showBanner();
     this._sharedService.showBanner();
+   
   }
 
   presentPopover(myEvent) {
@@ -29,7 +35,9 @@ export class HomePage {
       });
   }
 
+
   ionViewDidLoad() {
+    
     if (this._authService.loggedIn()) {
       let loader = this._sharedService.loader();
       loader.present();
