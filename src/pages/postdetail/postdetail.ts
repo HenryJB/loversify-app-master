@@ -92,7 +92,6 @@ export class PostdetailPage {
 
   shareViaWhatsApp() {
     this.socialSharing.shareViaWhatsApp(this.postDetails(), null, 'https://goo.gl/oH7UuA').then(() => {
-      this._sharedService.toaster('Thanks for sharing');
       this.share(this.userMeta.user, this.userMeta.post);
     }).catch((err) => {
       this._sharedService.toaster('share error');
@@ -101,7 +100,6 @@ export class PostdetailPage {
 
   shareViaFacebook() {
     this.socialSharing.shareViaFacebook(this.postDetails(), null, 'https://goo.gl/oH7UuA').then(() => {
-      this._sharedService.toaster('Thanks for sharing');
       this.share(this.userMeta.user, this.userMeta.post);
     }).catch((err) => {
       this._sharedService.toaster('share error');
@@ -109,9 +107,8 @@ export class PostdetailPage {
   }
 
   shareViaTwitter() {
-    console.log('welcome', this.postDetails())
+    this.postDetails();
     this.socialSharing.shareViaTwitter(this.postDetails(), null, 'https://goo.gl/oH7UuA').then(() => {
-      this._sharedService.toaster('Thanks for sharing');
       this.share(this.userMeta.user, this.userMeta.post);
     }).catch((err) => {
       this._sharedService.toaster('share error');
@@ -129,10 +126,12 @@ export class PostdetailPage {
   postDetails(): string {
     var message = '';
     message += this.details.title+'\n \n';
-    //message += post.description+'\n \n';
-    message += this.details.posts[0] +'\n \n';
-    return message
+    message += this.details.posts[this.currentPage] +'\n \n';
+    return message.replace(/<[^>]+>/gm, '');
   }
+
+
+
 
   copy() {
     this.clipboard.copy(this.postDetails()).then(
