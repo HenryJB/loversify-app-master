@@ -28,49 +28,40 @@
             <p [innerHtml]="details?.posts[currentPage]"></p>
         </ion-card-content>
 
-        <!-- <ion-row>
-            <div class="pl-10 pr-10">
-                <div class="button-bar">
-                    <button ion-button class="button button-calm icon-left ion-chevron-left" color="danger" round [disabled]="currentPage==0" (click)="prev()">Prev</button>
-
-                    <button ion-button class="button button-calm icon-right ion-chevron-right" color="danger" round [disabled]="!((size-1) > 1 && (currentPage) != (size-1))" (click)="next()">Next</button>
-                </div>
-
-            </div>
-        </ion-row> -->
-
 
         <ion-row>
-            <ion-col>
-                <button ion-button icon-right clear color="danger" (click)="like()">
-                    <ion-icon  [name]="userMetalResponse?.is_like == 1? 'md-heart' : 'ios-heart-outline' "></ion-icon>
-                  </button>
-            </ion-col>
-            <ion-col>
-                <button ion-button icon-right clear color="danger" (click)="copy()">
-                    <ion-icon name="copy"></ion-icon>
-                    
-                  </button>
-            </ion-col>
-            <ion-col center>
-                <ion-fab right bottom>
-                    <button ion-fab mini color="danger"><ion-icon name="share"></ion-icon></button>
-                    <ion-fab-list side="left">
-                        <button ion-fab color="primary" (click)="shareViaFacebook()"><ion-icon name="logo-facebook"></ion-icon></button>
-                        <button ion-fab color="primary" (click)="shareViaTwitter()"><ion-icon name="logo-twitter"></ion-icon></button>
-                        <button ion-fab color="secondary" (click)="shareViaWhatsApp()"><ion-icon name="logo-whatsapp"></ion-icon></button>
 
+            <ion-col>
+                <button ion-button round class="paging-btn prev" [disabled]="currentPage==0" (click)="prev()" color="danger">&laquo; Prev</button>
+            </ion-col>
+            <ion-col>
+                <ion-fab center bottom>
+                    <button ion-fab mini color="danger"><ion-icon name="add"></ion-icon></button>
+
+                    <ion-fab-list side="left">
+                        <button ion-button icon-right clear color="danger" (click)="like()"><ion-icon  [name]="userMetalResponse?.is_like == 1? 'md-heart' : 'ios-heart-outline' "></ion-icon></button>
+                        <div>Favourite</div>
+                        <button ion-fab color="primary" (click)="shareViaFacebook()"><ion-icon name="logo-facebook"></ion-icon></button>
+                        <div>Facebook</div>
+                    </ion-fab-list>
+                    <ion-fab-list side="right">
+                        <button ion-fab color="primary" (click)="shareViaTwitter()"><ion-icon name="logo-twitter"></ion-icon></button>
+                        <div>Twitter</div>
+                    </ion-fab-list>
+                    <ion-fab-list side="top">
+                        <button ion-button icon-right clear color="danger" (click)="copy()"><ion-icon name="copy"></ion-icon></button>
+                        <div>Copy</div>
+                        <button ion-fab color="secondary" (click)="shareViaWhatsApp()"><ion-icon name="logo-whatsapp"></ion-icon></button>
+                        <div>WhatsApp</div>
                     </ion-fab-list>
 
                 </ion-fab>
             </ion-col>
-        </ion-row>
+            <ion-col>
 
-        <ion-row class="centa">
-            <ion-col class="light-blu">
-                <button ion-button class="paging-btn prev" [disabled]="currentPage==0" (click)="prev()" color="danger">&laquo; Prev</button>
-                <button ion-button class="paging-btn next" [disabled]="!((size-1) > 1 && (currentPage) != (size-1))" (click)="next()" color="danger">Next &raquo;</button>
+                <button ion-button round class="paging-btn next" [disabled]="!((size-1) > 1 && (currentPage) != (size-1))" (click)="next()" color="danger">Next &raquo;</button>
             </ion-col>
+
         </ion-row>
 
 
