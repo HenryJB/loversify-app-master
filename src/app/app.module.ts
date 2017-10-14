@@ -16,6 +16,11 @@ import { SharedProvider } from '../providers/shared/shared';
 import { CategoryProvider } from '../providers/category/category';
 import { PostsProvider } from '../providers/posts/posts';
 import { AdMobFree } from '@ionic-native/admob-free';
+import { AdMobPro } from '@ionic-native/admob-pro';
+
+ 
+
+import { AdmobproProvider } from '../providers/admobpro/admobpro';
 
 
 export function getAuthHttp(http) {
@@ -54,10 +59,13 @@ export function getAuthHttp(http) {
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     { provide: AuthHttp, useFactory: getAuthHttp, deps: [Http] },
     SharedProvider,
+    AdmobproProvider,
     AuthProvider,
     CategoryProvider,
     PostsProvider,
-    AdMobFree
+    AdMobFree,
+    AdMobPro
+
   ]
 })
 export class AppModule {}
