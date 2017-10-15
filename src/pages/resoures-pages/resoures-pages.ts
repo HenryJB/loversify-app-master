@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the HowToUsePage page.
+ * Generated class for the ResouresPagesPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,17 +10,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-how-to-use',
-  templateUrl: 'how-to-use.html',
+  selector: 'page-resoures-pages',
+  templateUrl: 'resoures-pages.html',
 })
-export class HowToUsePage {
+export class ResouresPagesPage {
   item: any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.item = this.navParams.get('item');
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HowToUsePage');
+    console.log('ionViewDidLoad ResouresPagesPage');
   }
 
 }

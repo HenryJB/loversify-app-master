@@ -64,10 +64,12 @@ export class HelpPage {
   }
 
   itemSelected(item) {
-    if (item.title == "About us") {
-      this.navCtrl.push('AboutPage');
+
+    console.log(item)
+    if (item.title == "About Us") {
+      this.navCtrl.push('AboutPage', { item: item });
     } else {
-      this.navCtrl.push('HowToUsePage');
+      this.navCtrl.push('HowToUsePage', {item: item});
     }
     
   }

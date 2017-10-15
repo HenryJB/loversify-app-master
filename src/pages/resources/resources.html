@@ -1,15 +1,26 @@
-<ion-header>
 
+
+<ion-header>
+    
     <ion-navbar color="danger">
         <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
+            <ion-icon name="menu"></ion-icon>
         </button>
         <ion-title>Resources</ion-title>
     </ion-navbar>
 
 </ion-header>
-
-
+    
+    
 <ion-content padding>
+
+    <span [innerHtml]="help?.description"></span>
+
+    <ion-list>
+        <button ion-item *ngFor="let item of menu" (click)="itemSelected(item)">
+        {{ item.title }}
+        </button>
+
+    </ion-list>
 
 </ion-content>
