@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, PopoverController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, ActionSheetController,  PopoverController, NavParams } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SharedProvider } from '../../providers/shared/shared';
@@ -23,6 +23,7 @@ export class ProfilePage {
     public fb: FormBuilder,
     public _sharedService: SharedProvider,
     public popoverCtrl: PopoverController,
+    public actionSheetCtrl : ActionSheetController
   ) {
     this.currentUser = this._authService.currentUser();
     this.createUserForm();
@@ -79,4 +80,24 @@ export class ProfilePage {
       this._sharedService.toaster('Server Error');
     })
   }
+
+  public presentActionSheet(){
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Select Image Source',
+      buttons: [
+        {
+          text: 'Load from Library',
+          handler: () => {
+            //this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        }
+      ]
+    });
+    actionSheet.present();
+    }
+  
 }
