@@ -64,8 +64,6 @@ export class HelpPage {
   }
 
   itemSelected(item) {
-
-    console.log(item)
     if (item.title == "About Us") {
       this.navCtrl.push('AboutPage', { item: item });
     } else {
