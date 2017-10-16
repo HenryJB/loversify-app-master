@@ -41,14 +41,15 @@
                     <ion-fab-list side="left">
                         <button ion-button icon-right clear color="danger" (click)="like()"><ion-icon  [name]="userMetalResponse?.is_like == 1? 'md-heart' : 'ios-heart-outline' "></ion-icon></button>
                         <div>Favourite</div>
-                        <button ion-fab color="primary" (click)="shareViaFacebook()"><ion-icon name="logo-facebook"></ion-icon></button>
-                        <div>Facebook</div>
+
                     </ion-fab-list>
                     <ion-fab-list side="right">
                         <button ion-fab color="primary" (click)="shareViaTwitter()"><ion-icon name="logo-twitter"></ion-icon></button>
                         <div>Twitter</div>
                     </ion-fab-list>
                     <ion-fab-list side="top">
+                        <button ion-fab color="primary" (click)="shareViaFacebook()"><ion-icon name="logo-facebook"></ion-icon></button>
+                        <div>Facebook</div>
                         <button ion-button icon-right clear color="danger" (click)="copy()"><ion-icon name="copy"></ion-icon></button>
                         <div>Copy</div>
                         <button ion-fab color="secondary" (click)="shareViaWhatsApp()"><ion-icon name="logo-whatsapp"></ion-icon></button>
