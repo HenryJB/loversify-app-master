@@ -56,13 +56,10 @@ export class PostsPage {
 
   doInfinite(event) {
     this.currentPage++;
-    
     let loader = this._sharedService.loader();
     this.subscription = this._postsService.getCategoryPostsScroll(this.currentPage, this.selectedCategory.id)
     .subscribe((resp) => {
         if (resp.success) {
-          
-          
           this.posts = this.posts.concat(resp.data);
           this.pageCount = resp.pagecount;
           this.pageSize = resp.totalcount;
@@ -90,12 +87,16 @@ export class PostsPage {
   }
 
   doRefresh(refresher) {
-    console.log('Begin async operation', refresher);
-
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      refresher.complete();
-    }, 2000);
+    this.subscription = this._postsService.getCategoryPosts(this.selectedCategory.id)
+    .subscribe((resp) => {
+        if (resp.success) {
+          refresher.complete();
+          this.posts = resp.data;
+        }
+     }, err => {
+          
+          this._sharedService.toaster('internal server error');
+    })
   }
 
 }

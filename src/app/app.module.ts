@@ -15,11 +15,7 @@ import { CategoryPage } from '../pages/category/category';
 import { SharedProvider } from '../providers/shared/shared';
 import { CategoryProvider } from '../providers/category/category';
 import { PostsProvider } from '../providers/posts/posts';
-import { AdMobFree } from '@ionic-native/admob-free';
 import { AdMobPro } from '@ionic-native/admob-pro';
-
- 
-
 import { AdmobproProvider } from '../providers/admobpro/admobpro';
 
 
@@ -63,9 +59,7 @@ export function getAuthHttp(http) {
     AuthProvider,
     CategoryProvider,
     PostsProvider,
-    AdMobFree,
     AdMobPro
-
   ]
 })
 export class AppModule {}

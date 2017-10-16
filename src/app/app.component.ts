@@ -53,7 +53,6 @@ export class MyApp {
       if (this._authService.loggedIn()) {
         this.currentUser = this._authService.currentUser();
       }
-     this._sharedService.showBanner();
     });
   }
 

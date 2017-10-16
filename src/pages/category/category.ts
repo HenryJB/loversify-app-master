@@ -6,6 +6,7 @@ import { SharedProvider } from '../../providers/shared/shared';
 import { ISubscription } from "rxjs/Subscription";
 import { AuthProvider } from '../../providers/auth/auth';
 
+
 @IonicPage()
 @Component({
   selector: 'page-category',
@@ -19,6 +20,7 @@ export class CategoryPage {
   subscription: ISubscription;
   subCategory;
   subCategoryName: undefined;
+  blocks: any;
   
   constructor(
     public popoverCtrl: PopoverController, 
@@ -27,17 +29,19 @@ export class CategoryPage {
     public navParams: NavParams,
     public _categoryService: CategoryProvider,
     public _sharedService: SharedProvider,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    public _authService: AuthProvider
   ) { 
     this._sharedService.showBanner();
     this.subCategory = this.navParams.get('subCategory');
   }
 
   ionViewDidLoad() {
+    
     if (this.subCategory) {
       this.getSubCategories(this.subCategory);
     } else {
-      this.getCategories();
+      this.getCategories()
     }
   }
 
@@ -46,7 +50,7 @@ export class CategoryPage {
     loader.present();
     this.subscription = this._categoryService.getCategories()
     .subscribe((resp) => {
-     loader.dismiss();
+      this.getBlocks(loader);
        if (resp.success) {
          this.categories = resp.data;
        }
@@ -102,20 +106,20 @@ openSearch() {
   searchModal.present();
 }
 
-
-
-  // doInfinite(infiniteScroll) {
-  //   console.log('Begin async operation');
-
-  //   setTimeout(() => {
-  //     for (let i = 0; i < 11; i++) {
-  //       this.categories.push( {
-  //         title:  this.areas[Math.floor(Math.random() * this.areas.length)]
-  //       } );
-  //     }
-
-  //     console.log('Async operation has ended');
-  //     infiniteScroll.complete();
-  //   }, 500);
-  // }
+getBlocks(loader) {
+  if (this._authService.loggedIn()) {
+    let user = this._authService.currentUser();
+    this._sharedService.getWelcomeMessage(user.birthday, user.country, user.gender, user.relationship_status)
+    .subscribe((res) => {
+      loader.dismiss();
+      this.blocks = res.data || [];
+    }, err => {
+      loader.dismiss();
+      this._sharedService.toaster('Something went wrong but you can continue');
+    })
+  } else {
+    this._sharedService.toaster('Please login');
+    this.navCtrl.setRoot('LoginPage'); 
+  }
+ }
 }
