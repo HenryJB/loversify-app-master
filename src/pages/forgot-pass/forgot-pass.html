@@ -12,16 +12,16 @@
         <img src="assets/img/logo.png" class="">
     </div>
     <div class="subtitle">Please enter your email address to reset your password.</div>
-    <form novalidate>
+    <form [formGroup]="restPasswordForm" (ngSubmit)="resetPassWord()" novalidate>
 
         <ion-item>
 
             <ion-label floating>Email</ion-label>
-            <ion-input type="email" placeholder="Email"></ion-input>
+            <ion-input type="email" formControlName="email" placeholder="Email"></ion-input>
         </ion-item>
 
 
-        <button ion-button block color="danger">Send New Password</button>
+        <button [disabled]="!restPasswordForm.valid" ion-button block color="danger">Send New Password</button>
 
 
     </form>
