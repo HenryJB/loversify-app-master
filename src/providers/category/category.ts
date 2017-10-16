@@ -4,12 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import { tokenNotExpired, JwtHelper, AuthHttp } from 'angular2-jwt';
 
-/*
-  Generated class for the CategoryProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class CategoryProvider {
 

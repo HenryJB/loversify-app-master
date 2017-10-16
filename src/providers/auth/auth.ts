@@ -6,13 +6,6 @@ import { tokenNotExpired, JwtHelper, AuthHttp } from 'angular2-jwt';
 
 
 
-
-
-/*
-  Generated class for the AuthenticationProvider provider.
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular DI.
-*/
 @Injectable()
 export class AuthProvider {
 
