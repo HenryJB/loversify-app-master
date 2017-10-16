@@ -3,8 +3,7 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Rx';
 import { ToastController, LoadingController, Platform } from 'ionic-angular';
-import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
-
+import { AdMobPro } from '@ionic-native/admob-pro';
 /*
   Generated class for the SharedProvider provider.
 
@@ -19,7 +18,7 @@ export class SharedProvider {
     public http: Http, 
     public loading: LoadingController,
     public toastCtrl: ToastController,
-    public admob: AdMobFree,
+    public admob: AdMobPro,
     public platform: Platform
   ) {}
 
@@ -67,20 +66,10 @@ export class SharedProvider {
 
   showBanner() {
     let id = this.platform.is('android')? 'ca-app-pub-3055791092965383~8833220954' : 'ca-app-pub-3055791092965383~1309954157'
-    let bannerConfig: AdMobFreeBannerConfig = {
-        // isTesting: true, // Remove in production
-        autoShow: true,
-        id: id
-    };
-
-    this.admob.banner.config(bannerConfig);
-
-    this.admob.banner.prepare().then(() => {
-        // success
-  }).catch(e => console.log(e));
-  
-}
-
+    this.admob.prepareInterstitial({adId: id})
+      .then(() => { this.admob.showInterstitial(); 
+    });
+  }
   
 
 }

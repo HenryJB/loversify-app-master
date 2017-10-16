@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, PopoverController, ModalController, NavController } from 'ionic-angular';
+import { IonicPage, PopoverController, ModalController, NavController, Platform } from 'ionic-angular';
 import { SearchPage } from '../search/search';
 import { SharedProvider } from '../../providers/shared/shared';
-//import { AdmobproProvider } from '../../providers/admobpro/admobpro';
+import { AdmobproProvider } from '../../providers/admobpro/admobpro';
 import { AuthProvider } from '../../providers/auth/auth';
+import { AdMobPro } from '@ionic-native/admob-pro';
 
 @IonicPage()
 @Component({
@@ -21,11 +22,10 @@ export class HomePage {
     public _sharedService: SharedProvider,
     public _authService: AuthProvider,
     public navCtrl: NavController,
-    //public adMobService : AdmobproProvider
+    private admob: AdMobPro, 
+    private platform: Platform
   ) {
-    //this.adMobService.showBanner();
-    this._sharedService.showBanner();
-   
+    
   }
 
   presentPopover(myEvent) {
@@ -55,6 +55,17 @@ export class HomePage {
       this._sharedService.toaster('Please login');
       this.navCtrl.setRoot('LoginPage'); 
     }
+
+    this.platform.ready().then(() => {
+      let adId;
+      if(this.platform.is('android')) {
+        adId = 'ca-app-pub-3055791092965383~8833220954';
+      } else if (this.platform.is('ios')) {
+        adId = 'ca-app-pub-3055791092965383~1309954157';
+      }
+      this.admob.prepareInterstitial({adId: adId})
+        .then(() => { this.admob.showInterstitial(); });
+    })
   }
 
   openSearch() {

@@ -24,6 +24,7 @@
         "@ionic-native/admob-pro": "^4.3.1",
         "@ionic-native/clipboard": "^4.3.1",
         "@ionic-native/core": "^4.3.1",
+        "@ionic-native/deeplinks": "^4.3.1",
         "@ionic-native/social-sharing": "^4.3.1",
         "@ionic-native/splash-screen": "^3.14.0",
         "@ionic-native/status-bar": "3.12.1",
@@ -45,6 +46,7 @@
         "cordova-promise-polyfill": "0.0.2",
         "es6-promise-plugin": "^4.1.1",
         "ionic-angular": "3.6.1",
+        "ionic-plugin-deeplinks": "^1.0.15",
         "ionic-plugin-keyboard": "^2.2.1",
         "ionicons": "3.0.0",
         "rxjs": "5.4.0",
@@ -67,7 +69,25 @@
             "cordova-plugin-statusbar": {},
             "cordova-plugin-whitelist": {},
             "ionic-plugin-keyboard": {},
-            "cordova-plugin-admobpro": {}
+            "cordova-plugin-admobpro": {},
+            "ionic-plugin-deeplinks": {
+                "URL_SCHEME": "loversify",
+                "DEEPLINK_SCHEME": "https",
+                "DEEPLINK_HOST": "www.loversify.com",
+                "ANDROID_PATH_PREFIX": "/",
+                "ANDROID_2_PATH_PREFIX": "/",
+                "ANDROID_3_PATH_PREFIX": "/",
+                "ANDROID_4_PATH_PREFIX": "/",
+                "ANDROID_5_PATH_PREFIX": "/",
+                "DEEPLINK_2_SCHEME": " ",
+                "DEEPLINK_2_HOST": " ",
+                "DEEPLINK_3_SCHEME": " ",
+                "DEEPLINK_3_HOST": " ",
+                "DEEPLINK_4_SCHEME": " ",
+                "DEEPLINK_4_HOST": " ",
+                "DEEPLINK_5_SCHEME": " ",
+                "DEEPLINK_5_HOST": " "
+            }
         },
         "platforms": [
             "android",

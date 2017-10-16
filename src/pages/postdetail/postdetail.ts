@@ -22,8 +22,7 @@ export class PostdetailPage {
   userMetalResponse: any;
   currentPage: number = 0;
   size: number = 0;
-
-
+  blocks: any;
 
   constructor(
     public navCtrl: NavController, 
@@ -63,12 +62,29 @@ export class PostdetailPage {
       if (resp.success) {
         this.details = resp.data;
         this.size = resp.data.posts.length;
-        loader.dismiss();
+        this.getBlocks(loader);
       }
     }, err => {
       loader.dismiss();
       this._sharedService.toaster('internal server error');
     })
+  }
+
+  getBlocks(loader) {
+    if (this._authService.loggedIn()) {
+      let user = this._authService.currentUser();
+      this._sharedService.getWelcomeMessage(user.birthday, user.country, user.gender, user.relationship_status)
+      .subscribe((res) => {
+        loader.dismiss();
+        this.blocks = res.data || [];
+      }, err => {
+        loader.dismiss();
+        this._sharedService.toaster('Something went wrong but you can continue');
+      })
+    } else {
+      this._sharedService.toaster('Please login');
+      this.navCtrl.setRoot('LoginPage'); 
+    }
   }
 
   like() {
@@ -130,9 +146,6 @@ export class PostdetailPage {
     return message.replace(/<[^>]+>/gm, '');
   }
 
-
-
-
   copy() {
     this.clipboard.copy(this.postDetails()).then(
        (resolve: string) => {
@@ -152,7 +165,4 @@ export class PostdetailPage {
     this.currentPage--;
   }
 
-
-  
-  
 }
