@@ -36,6 +36,12 @@ export class AuthProvider {
 			.catch((error:any) => Observable.throw(error.json().error || 'server error'));
   }
 
+  resetPassword(email: any) : Observable<any> {
+		return this.http.post(`${this.host}/users/update`, email)
+			.map((res:Response) => res.json())
+			.catch((error:any) => Observable.throw(error.json().error || 'server error'));
+  }
+
   getContries() : Observable<any> {
 		return this.http.get(`assets/countries.json`)
 			.map((res:Response) => res.json())

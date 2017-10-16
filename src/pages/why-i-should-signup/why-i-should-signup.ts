@@ -16,8 +16,11 @@ import { SharedProvider } from '../../providers/shared/shared';
 export class WhyIShouldSignupPage {
   help: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public _sharedService: SharedProvider) {
-  }
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public _sharedService: SharedProvider
+  ) {}
 
   ionViewDidLoad() {
     this.loadHelp();
