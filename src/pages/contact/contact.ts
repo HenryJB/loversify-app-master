@@ -49,9 +49,10 @@ export class ContactPage {
 
   createContactForm() {
     this.contactForm = this.fb.group({
+      name : [this._authService.currentUser().first_name, Validators.required ],
       subject: ['', Validators.required],
        email: [this._authService.currentUser().email, Validators.required],
-       message: ['', Validators.required]
+       body: ['', Validators.required]
     })
   }
 
