@@ -18,7 +18,7 @@
 
         </ion-item>
 
-        <img src="assets/img/card-saopaolo.jpg">
+        <img src="assets/img/card-saopaolo.jpg" *ngIf="(currentPage + 1) == 1">
 
         <ion-card-content class="selectable" *ngIf="(currentPage + 1) == 1">
             <p [innerHtml]="details?.description"></p>

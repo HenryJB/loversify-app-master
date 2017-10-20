@@ -5,7 +5,7 @@
         <div class="sidebar-profile">
 
             <div class="sidebar-profile-avatar">
-                <img class="sidebar-profile-avatar-img" src="../assets/img/avatar.jpg" id="sidebar-dp" alt="Avatar" />
+                <img class="sidebar-profile-avatar-img" [src]="profileImage" id="sidebar-dp" alt="Avatar" />
             </div>
             <div class="sidebar-profile-title">{{currentUser?.first_name}} {{currentUser?.last_name}}</div>
         </div>
