@@ -86,5 +86,13 @@ export class AuthProvider {
     return (localStorage.getItem(token));
   }
 
+  getImage(token: string) {
+    if (this.getToken(token)) {
+      return this.getToken(token);
+    } else {
+      return 'assets/img/avatar.jpg'
+    }
+  }
+
 }
 

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, NavController, Platform } from 'ionic-angular';
+import { Nav, NavController, Platform, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
@@ -10,6 +10,7 @@ import { SharedProvider } from  '../providers/shared/shared';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
+  profileImage: String;
 
 
   rootPage: any; 
@@ -22,8 +23,14 @@ export class MyApp {
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
     public _authService: AuthProvider,
-    public _sharedService: SharedProvider
+    public _sharedService: SharedProvider,
+    public events: Events
   ) {
+    this.profileImage = this._authService.getImage('profileImage');
+    events.subscribe('user:picture', (picture) => {
+      this.profileImage = picture;
+    });
+  
     if (this._authService.loggedIn()) {
       this.rootPage = 'HomePage';
     } else {

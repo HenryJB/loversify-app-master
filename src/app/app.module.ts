@@ -17,6 +17,10 @@ import { CategoryProvider } from '../providers/category/category';
 import { PostsProvider } from '../providers/posts/posts';
 import { AdMobPro } from '@ionic-native/admob-pro';
 import { AdmobproProvider } from '../providers/admobpro/admobpro';
+import { File } from '@ionic-native/file';
+import { Transfer } from '@ionic-native/transfer';
+import { FilePath } from '@ionic-native/file-path';
+import { Camera } from '@ionic-native/camera';
 
 
 export function getAuthHttp(http) {
@@ -59,7 +63,11 @@ export function getAuthHttp(http) {
     AuthProvider,
     CategoryProvider,
     PostsProvider,
-    AdMobPro
+    AdMobPro,
+    File,
+    Transfer,
+    Camera,
+    FilePath,
   ]
 })
 export class AppModule {}

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Rx';
 import { ToastController, LoadingController, Platform } from 'ionic-angular';
@@ -70,6 +70,17 @@ export class SharedProvider {
       .then(() => { this.admob.showInterstitial(); 
     });
   }
+
+  // Use the FileTransfer to upload the image
+  upload(file) {
+    var headers = new Headers();
+    headers.append('Content-Type', 'multipart/form-data');
+    let options = new RequestOptions({ headers: headers, withCredentials: false });
+    return this.http.post(`${this.host}/users/upload`,  file, options )
+    .map((res:Response) => res.json())
+    .catch((error:any) => Observable.throw(error.json().error || 'server error'));
+  }
+    
   
 
 }
