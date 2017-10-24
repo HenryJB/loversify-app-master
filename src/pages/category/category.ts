@@ -60,6 +60,10 @@ export class CategoryPage {
    })
   }
 
+  doRefresh(refresher) {
+    refresher.complete();
+  }
+
   getSubCategories(subCategory) {
     let loader = this._sharedService.loader();
     loader.present();

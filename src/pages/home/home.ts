@@ -4,7 +4,7 @@ import { SearchPage } from '../search/search';
 import { SharedProvider } from '../../providers/shared/shared';
 import { AdmobproProvider } from '../../providers/admobpro/admobpro';
 import { AuthProvider } from '../../providers/auth/auth';
-import { AdMobPro } from '@ionic-native/admob-pro';
+
 
 @IonicPage()
 @Component({
@@ -22,8 +22,8 @@ export class HomePage {
     public _sharedService: SharedProvider,
     public _authService: AuthProvider,
     public navCtrl: NavController,
-    private admob: AdMobPro, 
-    private platform: Platform
+    private platform: Platform,
+    public _admobpro: AdmobproProvider
   ) {
     
   }
@@ -37,6 +37,8 @@ export class HomePage {
 
 
   ionViewDidLoad() {
+
+    this._admobpro.show();
     
     if (this._authService.loggedIn()) {
       let loader = this._sharedService.loader();
@@ -55,17 +57,10 @@ export class HomePage {
       this._sharedService.toaster('Please login');
       this.navCtrl.setRoot('LoginPage'); 
     }
+  }
 
-    this.platform.ready().then(() => {
-      let adId;
-      if(this.platform.is('android')) {
-        adId = 'ca-app-pub-3055791092965383~8833220954';
-      } else if (this.platform.is('ios')) {
-        adId = 'ca-app-pub-3055791092965383~1309954157';
-      }
-      this.admob.prepareInterstitial({adId: adId})
-        .then(() => { this.admob.showInterstitial(); });
-    })
+  doRefresh(refresher) {
+    refresher.complete();
   }
 
   openSearch() {
