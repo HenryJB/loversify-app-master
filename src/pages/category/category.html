@@ -27,14 +27,12 @@
 
 
 <ion-content class="bg-black" padding>
+        <ion-refresher (ionRefresh)="doRefresh($event)">
+                <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing..."></ion-refresher-content>
+            </ion-refresher>
     <ion-list>
         <button class="lightred" ion-item *ngFor="let category of categories" (click)="itemSelected($event, category)">
           {{ category.name }}
         </button>
     </ion-list>
 </ion-content>
-<ion-footer>
-    <ion-toolbar>
-        <img src="../assets/img/banner1.png" />
-    </ion-toolbar>
-</ion-footer>

@@ -56,6 +56,14 @@ export class PostdetailPage {
     })
   }
 
+ 
+
+  doRefresh(refresher) {
+    refresher.complete();
+  }
+
+
+
   getPostDetails(userMeta, loader) {
     this.subscription = this._postsService.getPostDetails(userMeta.user, userMeta.post)
     .subscribe((resp) => {

@@ -23,10 +23,10 @@
         </ion-buttons>-->
     </ion-navbar>
 </ion-header>
-
-
-
 <ion-content padding>
+        <ion-refresher (ionRefresh)="doRefresh($event)">
+                <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing..."></ion-refresher-content>
+            </ion-refresher>
     <h3>Make This App Yours!</h3>
 
     <div *ngFor="let block of blocks" class="b-b mb-10">
@@ -38,8 +38,3 @@
 
 </ion-content>
 
-<ion-footer>
-    <ion-toolbar>
-        <img src="../assets/img/banner1.png" />
-    </ion-toolbar>
-</ion-footer>

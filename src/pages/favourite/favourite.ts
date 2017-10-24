@@ -51,6 +51,10 @@ export class FavouritePage {
     })
   }
 
+  doRefresh(refresher) {
+    refresher.complete();
+  }
+
  
 
   openPost(item) {
