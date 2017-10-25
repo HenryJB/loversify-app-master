@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms'
 import { AuthProvider } from '../../providers/auth/auth';
 import { SharedProvider } from '../../providers/shared/shared';
+
 
 @IonicPage()
 @Component({
@@ -13,6 +14,7 @@ export class ForgotPassPage {
   public restPasswordForm: FormGroup;
 
   constructor(
+    
     public navCtrl: NavController, 
     public navParams: NavParams,
     public fb: FormBuilder,
@@ -56,6 +58,7 @@ export class ForgotPassPage {
 
 
   
+
 
 
 }

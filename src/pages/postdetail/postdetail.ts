@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController, ModalController, } from 'ionic-angular';
 import { PostsProvider } from '../../providers/posts/posts';
 import { ISubscription } from "rxjs/Subscription";
 import { SharedProvider } from '../../providers/shared/shared';
 import { AuthProvider } from '../../providers/auth/auth';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Clipboard } from '@ionic-native/clipboard';
-
+import {SearchPage} from '../search/search';
 
 
 @IonicPage()
@@ -25,6 +25,8 @@ export class PostdetailPage {
   blocks: any;
 
   constructor(
+    public popoverCtrl: PopoverController, 
+    public modalCtrl: ModalController,
     public navCtrl: NavController, 
     public navParams: NavParams,
     public _postsService: PostsProvider,
@@ -172,5 +174,21 @@ export class PostdetailPage {
   prev() {
     this.currentPage--;
   }
+
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create('MyPopoverPage');
+    popover.present({
+      ev: myEvent
+    });
+
+    
+  
+}
+
+openSearch() {
+  const searchModal = this.modalCtrl.create(SearchPage)
+  searchModal.present();
+}
+
 
 }

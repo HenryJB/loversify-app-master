@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, PopoverController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, PopoverController, ModalController, NavParams } from 'ionic-angular';
 import { PostsProvider } from '../../providers/posts/posts';
 import { ISubscription } from "rxjs/Subscription";
 import { SharedProvider } from '../../providers/shared/shared';
 import { AuthProvider } from '../../providers/auth/auth';
-
+import { SearchPage } from '../search/search';
 
 
 @IonicPage()
@@ -23,12 +23,14 @@ export class PostsPage {
 
 
   constructor(
+     public popoverCtrl: PopoverController, 
+     public modalCtrl: ModalController,
      public navCtrl: NavController,
      public navParams: NavParams,
      public _postsService: PostsProvider,
      public _sharedService: SharedProvider,
      public _authProvider: AuthProvider,
-     public popoverCtrl: PopoverController
+     
     ) {
       this.selectedCategory = navParams.get('category');
       this.title = this.selectedCategory.name;
@@ -98,5 +100,12 @@ export class PostsPage {
           this._sharedService.toaster('internal server error');
     })
   }
+
+  
+
+openSearch() {
+  const searchModal = this.modalCtrl.create(SearchPage)
+  searchModal.present();
+}
 
 }

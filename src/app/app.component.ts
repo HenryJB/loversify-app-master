@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, NavController, Platform, Events } from 'ionic-angular';
+import { Nav, NavController,  PopoverController, ModalController, Platform, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
@@ -19,6 +19,7 @@ export class MyApp {
   currentUser: any;
 
   constructor(
+    
     public platform: Platform, 
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
@@ -70,6 +71,7 @@ export class MyApp {
   }
 
 
+  
 
   
 }

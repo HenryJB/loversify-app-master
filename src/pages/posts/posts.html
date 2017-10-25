@@ -2,6 +2,22 @@
 
     <ion-navbar color="danger">
         <ion-title>{{title}}</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="openSearch()">
+         <ion-icon name="search"></ion-icon>
+        </button>
+        </ion-buttons>
+
+        <ion-buttons end>
+            <button ion-button icon-only>
+        <ion-icon name="notifications-outline"></ion-icon>
+      </button>
+        </ion-buttons>
+        <ion-buttons end>
+            <button ion-button icon-only clear (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+        </ion-buttons>
     </ion-navbar>
 
 </ion-header>
@@ -15,7 +31,7 @@
     <ion-list>
         <ion-item *ngFor="let post of posts" (click)="showPostDetails(post.id)">
             <ion-avatar item-start>
-                <img src="assets/img/defaultthumb.jpeg" class="custom-avatar">
+                <img src="assets/img/defaultthumb.png" class="custom-avatar">
             </ion-avatar>
             <h2 text-wrap> {{post?.title}}</h2>
             <!-- <p>{{post?.description | striphtml }}</p> -->

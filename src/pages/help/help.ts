@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, PopoverController, ModalController,  NavParams } from 'ionic-angular';
 import { SharedProvider } from '../../providers/shared/shared';
+import {SearchPage} from  '../search/search';
 
-/**
- * Generated class for the HelpPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -18,6 +13,8 @@ export class HelpPage {
   help: Object;
   menu: Array<any>;
   constructor(
+    public popoverCtrl: PopoverController, 
+    public modalCtrl: ModalController,
     public navCtrl: NavController, 
     public navParams: NavParams,
     public _sharedService: SharedProvider
@@ -71,6 +68,21 @@ export class HelpPage {
     }
     
   }
+
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create('MyPopoverPage');
+    popover.present({
+      ev: myEvent
+    });
+
+    
+  
+}
+
+openSearch() {
+  const searchModal = this.modalCtrl.create(SearchPage)
+  searchModal.present();
+}
 
 
 

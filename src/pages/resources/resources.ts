@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, PopoverController, ModalController, NavParams } from 'ionic-angular';
 import { SharedProvider } from '../../providers/shared/shared';
-/**
- * Generated class for the ResourcesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {SearchPage} from '../search/search';
 
 @IonicPage()
 @Component({
@@ -17,6 +12,8 @@ export class ResourcesPage {
   menu: any;
   help: any;
   constructor(
+    public popoverCtrl: PopoverController, 
+    public modalCtrl: ModalController,
     public navCtrl: NavController, 
     public navParams: NavParams, 
     public _sharedService: SharedProvider) {
@@ -63,6 +60,21 @@ export class ResourcesPage {
   itemSelected(item) {
     this.navCtrl.push('ResouresPagesPage', { item: item }); 
   }
+
+  resentPopover(myEvent) {
+    let popover = this.popoverCtrl.create('MyPopoverPage');
+    popover.present({
+      ev: myEvent
+    });
+
+    
+  
+}
+
+openSearch() {
+  const searchModal = this.modalCtrl.create(SearchPage)
+  searchModal.present();
+}
 
   
 

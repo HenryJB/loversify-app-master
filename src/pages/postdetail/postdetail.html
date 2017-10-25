@@ -2,15 +2,31 @@
 
     <ion-navbar color="danger">
         <ion-title>{{details?.title}}</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="openSearch()">
+         <ion-icon name="search"></ion-icon>
+        </button>
+        </ion-buttons>
+
+        <ion-buttons end>
+            <button ion-button icon-only>
+        <ion-icon name="notifications-outline"></ion-icon>
+      </button>
+        </ion-buttons>
+        <ion-buttons end>
+            <button ion-button icon-only clear (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+        </ion-buttons>
     </ion-navbar>
 
 </ion-header>
 
 
 <ion-content class="">
-        <ion-refresher (ionRefresh)="doRefresh($event)">
-            <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">></ion-refresher-content>
-        </ion-refresher>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">></ion-refresher-content>
+    </ion-refresher>
 
     <ion-card>
 
@@ -20,7 +36,7 @@
 
         </ion-item>
 
-        <img src="assets/img/card-saopaolo.jpeg" *ngIf="(currentPage + 1) == 1">
+        <img src="assets/img/card-saopaolo.jpg" *ngIf="(currentPage + 1) == 1">
 
         <ion-card-content class="selectable" *ngIf="(currentPage + 1) == 1">
             <p [innerHtml]="details?.description"></p>
@@ -37,22 +53,22 @@
                 <ion-fab center bottom>
                     <button ion-fab mini color="danger"><ion-icon name="add"></ion-icon></button>
 
-                    <ion-fab-list side="left">
+                    <ion-fab-list side="left" class="fab-ls">
                         <button ion-button icon-right clear color="danger" (click)="like()"><ion-icon  [name]="userMetalResponse?.is_like == 1? 'md-heart' : 'ios-heart-outline' "></ion-icon></button>
-                        <div>Favourite</div>
+                        <div color="danger">Favourite</div>
 
                     </ion-fab-list>
-                    <ion-fab-list side="right">
+                    <ion-fab-list side="right" class="fab-ls">
                         <button ion-fab color="primary" (click)="shareViaTwitter()"><ion-icon name="logo-twitter"></ion-icon></button>
-                        <div>Twitter</div>
+                        <div color="danger">Twitter</div>
                     </ion-fab-list>
-                    <ion-fab-list side="top">
+                    <ion-fab-list side="top" class="fab-ls">
                         <button ion-fab color="primary" (click)="shareViaFacebook()"><ion-icon name="logo-facebook"></ion-icon></button>
-                        <div>Facebook</div>
+                        <div color="danger">Facebook</div>
                         <button ion-button icon-right clear color="danger" (click)="copy()"><ion-icon name="copy"></ion-icon></button>
-                        <div>Copy</div>
+                        <div color="danger">Copy</div>
                         <button ion-fab color="secondary" (click)="shareViaWhatsApp()"><ion-icon name="logo-whatsapp"></ion-icon></button>
-                        <div>WhatsApp</div>
+                        <div color="danger">WhatsApp</div>
                     </ion-fab-list>
                 </ion-fab>
             </ion-col>
@@ -63,9 +79,9 @@
     </ion-card>
 
     <div *ngFor="let block of blocks" class="b-b mb-10">
-        <h5 >{{block?.title}}</h5>
+        <h5>{{block?.title}}</h5>
         <div [innerHtml]="block?.description"></div>
         <div [innerHtml]="block?.body"></div>
-    </div> 
-    
+    </div>
+
 </ion-content>

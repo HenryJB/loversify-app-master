@@ -61,6 +61,6 @@ export class SearchPage {
 }
 
 onCancel(){
-  this.navCtrl.push('CategoryPage');
+  this.navCtrl.pop();
 }
 }

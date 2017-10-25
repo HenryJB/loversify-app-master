@@ -7,8 +7,8 @@
         <ion-title>{{ subCategory? subCategory?.name : 'Categories' }}</ion-title>
         <ion-buttons end>
             <button ion-button icon-only (click)="openSearch()">
-        <ion-icon name="search"></ion-icon>
-      </button>
+         <ion-icon name="search"></ion-icon>
+        </button>
         </ion-buttons>
 
         <ion-buttons end>
@@ -27,9 +27,9 @@
 
 
 <ion-content class="bg-black" padding>
-        <ion-refresher (ionRefresh)="doRefresh($event)">
-                <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing..."></ion-refresher-content>
-            </ion-refresher>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing..."></ion-refresher-content>
+    </ion-refresher>
     <ion-list>
         <button class="lightred" ion-item *ngFor="let category of categories" (click)="itemSelected($event, category)">
           {{ category.name }}

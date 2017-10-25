@@ -28,7 +28,7 @@ export class AdmobproProvider {
       .then(() => { 
         this.admob.showInterstitial();
         this.createBanner(); 
-      }).catch((err) => { alert(err) });
+      }).catch((err) => { console.log(err) });
   }
 
 

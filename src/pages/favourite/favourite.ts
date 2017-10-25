@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams , IonicPage} from 'ionic-angular';
+import { NavController, ModalController, PopoverController, NavParams , IonicPage} from 'ionic-angular';
 import { CategoryProvider } from '../../providers/category/category';
 import { SharedProvider } from '../../providers/shared/shared';
 import { PostsProvider } from '../../providers/posts/posts';
 import { ISubscription } from "rxjs/Subscription";
 import { AuthProvider } from '../../providers/auth/auth';
 import { PostdetailPage } from '../../pages/postdetail/postdetail';
+import {SearchPage} from  '../search/search';
+
 
 
 @IonicPage()
@@ -20,6 +22,8 @@ export class FavouritePage {
   subscription: ISubscription;
 
   constructor(
+    public popoverCtrl: PopoverController, 
+    public modalCtrl: ModalController,
     public navCtrl: NavController,
     public navParams: NavParams,
     public _postsService: PostsProvider,
@@ -61,6 +65,22 @@ export class FavouritePage {
     let userId = this._authProvider.currentUser().id;
     this.navCtrl.push('PostdetailPage',  {userMeta: { user: userId, post: item.post.id } });
   }
+
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create('MyPopoverPage');
+    popover.present({
+      ev: myEvent
+    });
+
+    
+  
+}
+
+openSearch() {
+  const searchModal = this.modalCtrl.create(SearchPage)
+  searchModal.present();
+}
+
 
 
   
