@@ -36,7 +36,7 @@
 
         </ion-item>
 
-        <img src="assets/img/card-saopaolo.jpg" *ngIf="(currentPage + 1) == 1">
+        <img ng-src="http://app.loversify.com/assets/web/uploads/{{post.postPhoto}}" onError="this.src='assets/img/card-saopaolo.jpg'" *ngIf="(currentPage + 1) == 1">
 
         <ion-card-content class="selectable" *ngIf="(currentPage + 1) == 1">
             <p [innerHtml]="details?.description"></p>
