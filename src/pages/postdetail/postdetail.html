@@ -25,7 +25,7 @@
 
 <ion-content class="">
     <ion-refresher (ionRefresh)="doRefresh($event)">
-        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">></ion-refresher-content>
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing..."></ion-refresher-content>
     </ion-refresher>
 
     <ion-card>
@@ -36,7 +36,7 @@
 
         </ion-item>
 
-        <img ng-src="http://app.loversify.com/assets/web/uploads/{{post.postPhoto}}" onError="this.src='assets/img/card-saopaolo.jpg'" *ngIf="(currentPage + 1) == 1">
+        <img [src]="details?.postPhoto? imageUrl + details.postPhoto : 'assets/img/card-saopaolo.jpeg'"  *ngIf="(currentPage + 1) == 1">
 
         <ion-card-content class="selectable" *ngIf="(currentPage + 1) == 1">
             <p [innerHtml]="details?.description"></p>

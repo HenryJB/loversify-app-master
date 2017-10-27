@@ -23,6 +23,7 @@ export class PostdetailPage {
   currentPage: number = 0;
   size: number = 0;
   blocks: any;
+  imageUrl: String = 'http://app.loversify.com/assets/web/uploads/';
 
   constructor(
     public popoverCtrl: PopoverController, 

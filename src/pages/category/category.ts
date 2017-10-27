@@ -21,6 +21,7 @@ export class CategoryPage {
   subCategory;
   subCategoryName: undefined;
   blocks: any;
+ 
   
   constructor(
     public popoverCtrl: PopoverController, 
