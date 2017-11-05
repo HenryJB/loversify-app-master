@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController, ModalController, } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, PopoverController, ModalController, Content } from 'ionic-angular';
 import { PostsProvider } from '../../providers/posts/posts';
 import { ISubscription } from "rxjs/Subscription";
 import { SharedProvider } from '../../providers/shared/shared';
@@ -24,6 +24,7 @@ export class PostdetailPage {
   size: number = 0;
   blocks: any;
   imageUrl: String = 'http://app.loversify.com/assets/web/uploads/';
+  @ViewChild(Content) content: Content;
 
   constructor(
     public popoverCtrl: PopoverController, 
@@ -170,10 +171,12 @@ export class PostdetailPage {
 
   next() {
     this.currentPage++;
+    this.content.scrollToTop();
   }
 
   prev() {
     this.currentPage--;
+    this.content.scrollToTop();
   }
 
   presentPopover(myEvent) {
