@@ -57,7 +57,7 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
-      //this.splashScreen.hide();
+      setTimeout( () => this.splashScreen.hide(), 5000)
       if (this._authService.loggedIn()) {
         this.currentUser = this._authService.currentUser();
       }
