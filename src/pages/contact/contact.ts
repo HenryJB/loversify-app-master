@@ -65,6 +65,7 @@ export class ContactPage {
       loader.dismiss();
       if (res.success) {
         this._sharedService.toaster('Your message has been sent');
+        this.contactForm.reset({email: this._authService.currentUser().email});
       } else {
         this._sharedService.toaster('Something wrong');
       }

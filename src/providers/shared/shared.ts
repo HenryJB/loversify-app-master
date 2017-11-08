@@ -58,8 +58,8 @@ export class SharedProvider {
     .catch((error:any) => Observable.throw(error.json().error || 'server error'));
   }
 
-  getWelcomeMessage(age, country, gender, relationship_status) : Observable<any> {
-    return this.http.get(`${this.host}/blocks/find/?params[age]=${age}&params[countries]=${country}&params[gender]=${gender}&params[relationship_status]=${relationship_status}&params[type]=${1}`,)
+  getWelcomeMessage(age, country, gender, relationship_status, type) : Observable<any> {
+    return this.http.get(`${this.host}/blocks/find/?params[age]=${age}&params[countries]=${country}&params[gender]=${gender}&params[relationship_status]=${relationship_status}&params[type]=${type}`,)
     .map((res:Response) => res.json()).debounceTime(200).distinctUntilChanged()
     .catch((error:any) => Observable.throw(error.json().error || 'server error'));
   }

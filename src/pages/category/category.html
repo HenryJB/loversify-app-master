@@ -35,4 +35,10 @@
           {{ category.name }}
         </button>
     </ion-list>
+
+    <div *ngFor="let block of blocks" class="b-b mb-10">
+        <h5>{{block?.title}}</h5>
+        <div [innerHtml]="block?.description"></div>
+        <button (click)="readMoreOnblock(block)">read more</button>
+    </div>
 </ion-content>
