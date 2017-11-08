@@ -85,7 +85,7 @@ export class PostdetailPage {
   getBlocks(loader) {
     if (this._authService.loggedIn()) {
       let user = this._authService.currentUser();
-      this._sharedService.getWelcomeMessage(user.birthday, user.country, user.gender, user.relationship_status)
+      this._sharedService.getWelcomeMessage(user.birthday, user.country, user.gender, user.relationship_status, 2)
       .subscribe((res) => {
         loader.dismiss();
         this.blocks = res.data || [];
@@ -97,6 +97,10 @@ export class PostdetailPage {
       this._sharedService.toaster('Please login');
       this.navCtrl.setRoot('LoginPage'); 
     }
+  }
+
+  readMoreOnblock(block) {
+    this.navCtrl.push('BlockDetailsPage', { block: block });
   }
 
   like() {

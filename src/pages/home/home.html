@@ -27,11 +27,7 @@
         <ion-refresher (ionRefresh)="doRefresh($event)">
                 <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing..."></ion-refresher-content>
             </ion-refresher>
-    <h3>Make This App Yours!</h3>
-
     <div *ngFor="let block of blocks" class="b-b mb-10">
-        <h5>{{block?.title}}</h5>
-        <div [innerHtml]="block?.description"></div>
         <div [innerHtml]="block?.body"></div>
     </div>
 

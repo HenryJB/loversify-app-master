@@ -54,9 +54,19 @@ export class FavouritePage {
           this._sharedService.toaster('internal server error');
     })
   }
+  
 
   doRefresh(refresher) {
-    refresher.complete();
+    this.subscription = this._postsService.favourite(this._authProvider.currentUser().id)
+    .subscribe((resp) => {
+      refresher.complete();
+        if (resp.success) {
+          this.items = resp.data;
+        }
+      }, err => {
+          refresher.complete();
+          this._sharedService.toaster('internal server error');
+    })
   }
 
  

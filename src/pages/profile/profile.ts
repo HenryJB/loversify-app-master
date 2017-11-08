@@ -67,7 +67,7 @@ export class ProfilePage {
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
       email: ['', Validators.required],
-      username: [''],
+      username: ['',  Validators.required],
       phone: [''],
       birthday: [''],
       gender: [''],

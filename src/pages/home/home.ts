@@ -44,7 +44,7 @@ export class HomePage {
       let loader = this._sharedService.loader();
       loader.present();
       let user = this._authService.currentUser();
-      this._sharedService.getWelcomeMessage(user.birthday, user.country, user.gender, user.relationship_status)
+      this._sharedService.getWelcomeMessage(user.birthday, user.country, user.gender, user.relationship_status, 1)
       .subscribe((res) => {
         loader.dismiss();
         this.blocks = res.data || [];
@@ -60,7 +60,16 @@ export class HomePage {
   }
 
   doRefresh(refresher) {
-    refresher.complete();
+    let user = this._authService.currentUser();
+    this._sharedService.getWelcomeMessage(user.birthday, user.country, user.gender, user.relationship_status, 1)
+    .subscribe((res) => {
+      refresher.complete();
+      this.blocks = res.data || [];
+    }, err => {
+      refresher.complete();
+      this._sharedService.toaster('Something went wrong but you can continue');
+    })
+    
   }
 
   openSearch() {

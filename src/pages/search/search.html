@@ -22,10 +22,14 @@
 <ion-content class="bg-black" padding>
     <ion-list *ngIf="hasResult">
         <ion-item *ngFor="let post of search" (click)="showPostDetails(post.id)">
-            <ion-avatar item-start>
-                <img src="assets/img/defaultthumb.png" class="custom-avatar">
+            <ion-avatar item-start *ngIf="post.postPhoto">
+                <img src="http://app.loversify.com/assets/web/uploads/{{post.postPhoto}}" class="custom-avatar">
             </ion-avatar>
-            <h2 text-wrap>{{post?.title}}</h2>
+            <ion-avatar item-start *ngIf="!post.postPhoto">
+                <img src="assets/img/defaultthumb.jpeg" class="custom-avatar">
+            </ion-avatar>
+            <h2 text-wrap> {{post?.title}}</h2>
+            <!-- <p>{{post?.description | striphtml }}</p> -->
             <p><a>Read more</a></p>
         </ion-item>
     </ion-list>

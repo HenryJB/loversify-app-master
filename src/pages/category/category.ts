@@ -62,7 +62,18 @@ export class CategoryPage {
   }
 
   doRefresh(refresher) {
-    refresher.complete();
+   
+    this.subscription = this._categoryService.getCategories()
+    .subscribe((resp) => {
+      refresher.complete();
+       if (resp.success) {
+         this.categories = resp.data;
+       }
+    }, err => {
+      refresher.complete();
+      this._sharedService.toaster('internal server error');
+   })
+   
   }
 
   getSubCategories(subCategory) {
@@ -114,7 +125,7 @@ openSearch() {
 getBlocks(loader) {
   if (this._authService.loggedIn()) {
     let user = this._authService.currentUser();
-    this._sharedService.getWelcomeMessage(user.birthday, user.country, user.gender, user.relationship_status)
+    this._sharedService.getWelcomeMessage(user.birthday, user.country, user.gender, user.relationship_status, 2)
     .subscribe((res) => {
       loader.dismiss();
       this.blocks = res.data || [];
@@ -127,4 +138,8 @@ getBlocks(loader) {
     this.navCtrl.setRoot('LoginPage'); 
   }
  }
+
+ readMoreOnblock(block) {
+  this.navCtrl.push('BlockDetailsPage', { block: block });
+}
 }

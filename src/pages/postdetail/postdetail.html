@@ -43,7 +43,7 @@
         </ion-card-content>
 
         <ion-card-content class="selectable">
-            <p [innerHtml]="details?.posts[currentPage]"></p>
+            <p *ngIf="details?.posts[currentPage]" [innerHtml]="details?.posts[currentPage] | striphtml"></p>
         </ion-card-content>
         <ion-row>
             <ion-col>
@@ -81,7 +81,7 @@
     <div *ngFor="let block of blocks" class="b-b mb-10">
         <h5>{{block?.title}}</h5>
         <div [innerHtml]="block?.description"></div>
-        <div [innerHtml]="block?.body"></div>
+        <button (click)="readMoreOnblock(block)">read more</button>
     </div>
 
 </ion-content>
