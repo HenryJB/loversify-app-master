@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController, IonicPage } from 'ionic-angular';
+import { NavController, ToastController, IonicPage, Events } from 'ionic-angular';
 import { Validators, FormBuilder } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { SharedProvider } from '../../providers/shared/shared';
@@ -36,7 +36,8 @@ countries: Array<any>;
     public toastCtrl: ToastController,
     public formBuilder: FormBuilder,
     public _sharedService: SharedProvider,
-    public _authService: AuthProvider
+    public _authService: AuthProvider,
+    public events: Events
   ) {}
 
   ionViewDidLoad() {
@@ -66,6 +67,7 @@ countries: Array<any>;
             this.rootPage = HomePage;
             this.navCtrl.setRoot(HomePage);
             this._authService.saveToken('token', resp.data.token);
+            this.events.publish('user:currentUser', this._authService.currentUser())
             loader.dismiss();
           } else {
             loader.dismiss();
