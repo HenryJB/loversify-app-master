@@ -31,6 +31,10 @@ export class MyApp {
     events.subscribe('user:picture', (picture) => {
       this.profileImage = picture;
     });
+
+    events.subscribe('user:currentUser', (user) => {
+      this.currentUser = user;
+    });
   
     if (this._authService.loggedIn()) {
       this.rootPage = 'HomePage';
@@ -60,6 +64,7 @@ export class MyApp {
       setTimeout( () => this.splashScreen.hide(), 5000)
       if (this._authService.loggedIn()) {
         this.currentUser = this._authService.currentUser();
+        console.log(this.currentUser)
       }
     });
   }

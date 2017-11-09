@@ -88,14 +88,22 @@ export class ProfilePage {
   }
 
   updateUser() {
+    let loader = this._sharedService.loader('Updating...');
+    loader.present();
     this._authService.update(this.userForm.value)
     .subscribe((res) => {
        if (res.success) {
+        this._authService.saveToken('token', res.data.token);
+        this.events.publish('user:currentUser', this._authService.currentUser());
+        loader.dismissAll();
         this._sharedService.toaster('Updated');
+        
        } else {
+        loader.dismissAll();
         this._sharedService.toaster('Unable to update');
        }
     }, err => {
+      loader.dismissAll();
       this._sharedService.toaster('Server Error');
     })
   }

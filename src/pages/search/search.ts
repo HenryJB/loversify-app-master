@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController,PopoverController, NavParams, Searchbar } from 'ionic-angular';
+import { IonicPage, NavController,PopoverController, NavParams, Searchbar, ViewController } from 'ionic-angular';
 import { PostsProvider } from '../../providers/posts/posts';
 import { AuthProvider } from '../../providers/auth/auth';
 
@@ -19,7 +19,8 @@ export class SearchPage {
      public navCtrl: NavController,
      public navParams: NavParams,
      public _postsService: PostsProvider,
-     public _authProvider: AuthProvider
+     public _authProvider: AuthProvider,
+     public viewCtrl: ViewController
   ) {}
 
   ionViewDidLoad() {
@@ -58,6 +59,10 @@ export class SearchPage {
     });
 
     
+}
+
+dismiss() {
+  this.viewCtrl.dismiss();
 }
 
 onCancel(){
