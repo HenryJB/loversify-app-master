@@ -91,6 +91,8 @@ export class ProfilePage {
     this._authService.update(this.userForm.value)
     .subscribe((res) => {
        if (res.success) {
+        this._authService.saveToken('token', res.data.token);
+        
         this._sharedService.toaster('Updated');
        } else {
         this._sharedService.toaster('Unable to update');
