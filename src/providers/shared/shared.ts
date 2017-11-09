@@ -59,6 +59,9 @@ export class SharedProvider {
   }
 
   getWelcomeMessage(age, country, gender, relationship_status, type) : Observable<any> {
+    age =  (age? age : '1960-06-11')
+    gender =  (gender? gender : 'male')
+    relationship_status =  (relationship_status? relationship_status : 'single')
     return this.http.get(`${this.host}/blocks/find/?params[age]=${age}&params[countries]=${country}&params[gender]=${gender}&params[relationship_status]=${relationship_status}&params[type]=${type}`,)
     .map((res:Response) => res.json()).debounceTime(200).distinctUntilChanged()
     .catch((error:any) => Observable.throw(error.json().error || 'server error'));
