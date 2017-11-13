@@ -15,6 +15,6 @@
 
 <ion-content padding>
   <div class="b-b mb-10">
-    <div [innerHtml]="block?.body"></div>
+    <div [innerHtml]="block?.body | striphtml"></div>
 </div>
 </ion-content>
