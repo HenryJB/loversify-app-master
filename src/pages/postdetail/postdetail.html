@@ -36,7 +36,7 @@
 
         </ion-item>
 
-        <img [src]="details?.postPhoto? imageUrl + details.postPhoto : 'assets/img/card-saopaolo.jpeg'"  *ngIf="(currentPage + 1) == 1">
+        <img [src]="details?.postPhoto? imageUrl + details.postPhoto : 'assets/img/card-saopaolo.jpg'" *ngIf="(currentPage + 1) == 1">
 
         <ion-card-content class="selectable" *ngIf="(currentPage + 1) == 1">
             <p [innerHtml]="details?.description"></p>
@@ -59,14 +59,15 @@
 
                     </ion-fab-list>
                     <ion-fab-list side="right" class="fab-ls">
-                        <button ion-fab color="primary" (click)="shareViaTwitter()"><ion-icon name="logo-twitter"></ion-icon></button>
-                        <div color="danger">Twitter</div>
+
+                        <button ion-button icon-right clear color="danger" (click)="copy()"><ion-icon name="copy"></ion-icon></button>
+                        <div color="danger">Copy</div>
                     </ion-fab-list>
                     <ion-fab-list side="top" class="fab-ls">
                         <button ion-fab color="primary" (click)="shareViaFacebook()"><ion-icon name="logo-facebook"></ion-icon></button>
                         <div color="danger">Facebook</div>
-                        <button ion-button icon-right clear color="danger" (click)="copy()"><ion-icon name="copy"></ion-icon></button>
-                        <div color="danger">Copy</div>
+                        <button ion-fab color="primary" (click)="shareViaTwitter()"><ion-icon name="logo-twitter"></ion-icon></button>
+                        <div color="danger">Twitter</div>
                         <button ion-fab color="secondary" (click)="shareViaWhatsApp()"><ion-icon name="logo-whatsapp"></ion-icon></button>
                         <div color="danger">WhatsApp</div>
                     </ion-fab-list>
@@ -78,10 +79,16 @@
         </ion-row>
     </ion-card>
 
-    <div *ngFor="let block of blocks" class="b-b mb-10">
-        <h5>{{block?.title}}</h5>
-        <div [innerHtml]="block?.description"></div>
-        <button (click)="readMoreOnblock(block)">read more</button>
-    </div>
+    <ion-card>
+
+        <ion-card-content>
+
+            <div *ngFor="let block of blocks" class="b-b mb-10">
+                <h5 *ngIf="block.show_title==1">{{block?.title}}</h5>
+                <div *ngIf="block.show_description==1" [innerHtml]="block?.description"></div>
+                <button (click)="readMoreOnblock(block)">read more</button>
+            </div>
+        </ion-card-content>
+    </ion-card>
 
 </ion-content>

@@ -174,7 +174,141 @@
                 .fab-ls {
                     background-color: #ffffff;
                     color: #3032ce;
-                    font-size: 10px;
+                    font-size: 12px;
                     padding: 3px;
+                }
+                .button-red,
+                .button-lightblue,
+                .button-gray,
+                .button-darkblue,
+                .button-green,
+                .button-yellow,
+                .button-purple,
+                .button-white,
+                .button-black {
+                    border-color: transparent;
+                    background-color: #f8f8f8;
+                    color: #444;
+                    position: relative;
+                    display: inline-block;
+                    margin: 0;
+                    padding: 0 12px;
+                    min-width: 52px;
+                    min-height: 47px;
+                    border-width: 1px;
+                    border-style: solid;
+                    border-radius: 4px;
+                    vertical-align: top;
+                    text-align: center;
+                    text-overflow: ellipsis;
+                    font-size: 16px;
+                    line-height: 42px;
+                    cursor: pointer;
+                }
+                .button:hover,
+                .button-red:hover,
+                .button-lightblue:hover,
+                .button-darkblue:hover,
+                .button-green:hover,
+                .button-yellow:hover,
+                .button-purple:hover,
+                .button-gray:hover,
+                .button-black:hover,
+                .button-white:hover {
+                    color: #444;
+                    text-decoration: none;
+                }
+                .button.active,
+                .active.button-red,
+                .active.button-lightblue,
+                .active.button-darkblue,
+                .active.button-green,
+                .active.button-yellow,
+                .active.button-purple,
+                .active.button-gray,
+                .active.button-black,
+                .active.button-white,
+                .button.activated,
+                .activated.button-red,
+                .activated.button-lightblue,
+                .activated.button-darkblue,
+                .activated.button-green,
+                .activated.button-yellow,
+                .activated.button-purple,
+                .activated.button-gray,
+                .activated.button-black,
+                .activated.button-white {
+                    border-color: #a2a2a2;
+                    background-color: #e5e5e5;
+                }
+                .button:after,
+                .button-red:after,
+                .button-lightblue:after,
+                .button-darkblue:after,
+                .button-green:after,
+                .button-yellow:after,
+                .button-purple:after,
+                .button-gray:after,
+                .button-black:after,
+                .button-white:after {
+                    position: absolute;
+                    top: -6px;
+                    right: -6px;
+                    bottom: -6px;
+                    left: -6px;
+                    content: ' ';
+                }
+                .button-red {
+                    color: #fff;
+                    background-color: #ef473a;
+                }
+                .button-lightblue {
+                    color: #fff;
+                    background-color: #11c1f3;
+                }
+                .button-darkblue {
+                    color: #fff;
+                    background-color: #387ef5;
+                }
+                .button-green {
+                    color: #fff;
+                    background-color: #33cd5f;
+                }
+                .button-yellow {
+                    color: #fff;
+                    background-color: #ffc900;
+                }
+                .button-purple {
+                    color: #fff;
+                    background-color: #886aea;
+                }
+                .button-gray {
+                    color: #444;
+                    background-color: #f8f8f8;
+                }
+                .button-black {
+                    color: #fff;
+                    background-color: #444;
+                }
+                .button-white {
+                    color: #444;
+                    background-color: #fff;
+                }
+                a.button,
+                a.button-red,
+                a.button-lightblue,
+                a.button-darkblue,
+                a.button-green,
+                a.button-yellow,
+                a.button-purple,
+                a.button-gray,
+                a.button-black,
+                a.button-white {
+                    text-decoration: none;
+                }
+                iframe,
+                object,
+                embed {
+                    max-width: 100%;
                 }
             }

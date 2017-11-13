@@ -7,6 +7,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Clipboard } from '@ionic-native/clipboard';
 import {SearchPage} from '../search/search';
+import {SafehtmlPipe} from '../../pipes/safehtml/safehtml'
 
 
 @IonicPage()

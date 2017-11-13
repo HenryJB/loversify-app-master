@@ -5,7 +5,7 @@
         </button>
         <ion-title>Welcome To Loversify</ion-title>
 
-        <!-- <ion-buttons end>
+        <ion-buttons end>
             <button ion-button icon-only (click)="openSearch()">
         <ion-icon name="search"></ion-icon>
       </button>
@@ -15,22 +15,29 @@
             <button ion-button icon-only>
         <ion-icon name="notifications-outline"></ion-icon>
       </button>
-        </ion-buttons> 
+        </ion-buttons>
         <ion-buttons end>
             <button ion-button icon-only clear (click)="presentPopover($event)">
         <ion-icon name="more"></ion-icon>
       </button>
-        </ion-buttons>-->
+        </ion-buttons>
     </ion-navbar>
 </ion-header>
-<ion-content padding>
-        <ion-refresher (ionRefresh)="doRefresh($event)">
-                <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing..."></ion-refresher-content>
-            </ion-refresher>
-    <div *ngFor="let block of blocks" class="b-b mb-10">
-        <div [innerHtml]="block?.body"></div>
-    </div>
+<ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing..."></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-card>
+
+        <ion-card-content>
+            <div *ngFor="let block of blocks" class="b-b mb-10">
+                <h5 *ngIf="block?.show_title==1">{{block?.title}}</h5>
+                <div *ngIf="block?.show_body==1" [innerHtml]="block?.body"></div>
+            </div>
+        </ion-card-content>
+    </ion-card>
+
 
 
 </ion-content>
-
