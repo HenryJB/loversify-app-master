@@ -33,7 +33,7 @@
         <ion-card-content>
             <div *ngFor="let block of blocks" class="b-b mb-10">
                 <h5 *ngIf="block?.show_title==1">{{block?.title}}</h5>
-                <div *ngIf="block?.show_body==1" [innerHtml]="block?.body"></div>
+                <div *ngIf="block?.show_body==1" [innerHtml]="block?.body | striphtml"></div>
             </div>
         </ion-card-content>
     </ion-card>

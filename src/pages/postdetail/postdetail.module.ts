@@ -3,12 +3,11 @@ import { IonicPageModule } from 'ionic-angular';
 import { PostdetailPage } from './postdetail';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Clipboard } from '@ionic-native/clipboard';
-import { StriphtmlPipe } from '../../pipes/striphtml/striphtml';
+import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
   declarations: [
-    PostdetailPage,
-    StriphtmlPipe
+    PostdetailPage
   ],
   providers: [
     SocialSharing,
@@ -16,6 +15,7 @@ import { StriphtmlPipe } from '../../pipes/striphtml/striphtml';
   ],
   imports: [
     IonicPageModule.forChild(PostdetailPage),
+    PipesModule
   ],
 })
 export class PostdetailPageModule {}

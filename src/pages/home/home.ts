@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, PopoverController, ModalController, NavController, Platform } from 'ionic-angular';
+import { IonicPage, PopoverController, ModalController, NavController, Platform, Events } from 'ionic-angular';
 import { SearchPage } from '../search/search';
 import { SharedProvider } from '../../providers/shared/shared';
 import { AdmobproProvider } from '../../providers/admobpro/admobpro';
@@ -9,9 +9,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 @IonicPage()
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html',
-  //providers: [AdmobproProvider]
- 
+  templateUrl: 'home.html' 
 })
 export class HomePage {
  
@@ -23,7 +21,8 @@ export class HomePage {
     public _authService: AuthProvider,
     public navCtrl: NavController,
     private platform: Platform,
-    public _admobpro: AdmobproProvider
+    public _admobpro: AdmobproProvider,
+    public events: Events,
   ) {
     
   }
@@ -44,6 +43,7 @@ export class HomePage {
       let loader = this._sharedService.loader();
       loader.present();
       let user = this._authService.currentUser();
+      this.events.publish('user:currentUser', user);
       this._sharedService.getWelcomeMessage(user.birthday, user.country, user.gender, user.relationship_status, 1)
       .subscribe((res) => {
         loader.dismiss();
