@@ -72,6 +72,10 @@ export class HomePage {
     
   }
 
+  readMoreOnblock(block) {
+    this.navCtrl.push('BlockDetailsPage', { block: block });
+  }
+
   openSearch() {
     const searchModal = this.modalCtrl.create(SearchPage)
     searchModal.present();
