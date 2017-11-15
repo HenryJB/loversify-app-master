@@ -82,7 +82,6 @@
     <allow-navigation href="http://192.168.43.105:8100" />
     <allow-navigation href="http://192.168.43.105:8101" />
     <allow-navigation href="http://192.168.43.105:8103" />
-    <engine name="android" spec="^6.3.0" />
     <engine name="ios" spec="^4.5.1" />
     <plugin name="cordova-clipboard" spec="^1.1.0" />
     <plugin name="cordova-plugin-admob-free" spec="^0.11.0" />
@@ -119,4 +118,6 @@
         <variable name="DEEPLINK_5_HOST" value=" " />
     </plugin>
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
+    <engine name="android" spec="~6.2.3" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^1.7.2" />
 </widget>
