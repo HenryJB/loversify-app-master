@@ -61,7 +61,7 @@ export class ResourcesPage {
     this.navCtrl.push('ResouresPagesPage', { item: item }); 
   }
 
-  resentPopover(myEvent) {
+  presentPopover(myEvent) {
     let popover = this.popoverCtrl.create('MyPopoverPage');
     popover.present({
       ev: myEvent
