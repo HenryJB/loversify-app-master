@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
 import { SharedProvider } from '../../providers/shared/shared';
 import { AuthProvider } from '../../providers/auth/auth';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { SearchPage } from '../search/search';
+import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 
 
 
@@ -12,10 +14,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   templateUrl: 'contact.html',
 })
 export class ContactPage {
+  
   help: Object;
   contactForm: FormGroup;
   constructor(
     public navCtrl: NavController, 
+    public modalCtrl:ModalController,
+    public popoverCtrl: PopoverController,
     public navParams: NavParams,
     public _sharedService: SharedProvider,
     public fb: FormBuilder,
@@ -74,5 +79,19 @@ export class ContactPage {
       this._sharedService.toaster('Server error');
     })
   }
+
+  openSearch() {
+    const searchModal = this.modalCtrl.create(SearchPage)
+    searchModal.present();
+  }
+
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create('MyPopoverPage');
+    popover.present({
+      ev: myEvent
+    });
+}
+
+
 
 }
