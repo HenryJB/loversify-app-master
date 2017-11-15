@@ -29,21 +29,20 @@
               <input type="text"  formControlName="last_name" placeholder="Last Name" required/>
             </label>
 
-            <!-- <label class="item item-input">
+                <!-- <label class="item item-input">
                 <span class="input-label">Username</span>
                 <input type="text"  formControlName="username" placeholder="Username" required/>
             </label> -->
-            <label class="item item-input">
+                <label class="item item-input">
                 <input type="text"  formControlName="email" placeholder="Email" required/>
             </label>
-            <label class="item item-input">
+                <label class="item item-input">
               <input type="password" formControlName="password" placeholder="Password" required/>
             </label>
-            
-              <label class="item item-input item-select ">
+
+                <label class="item item-input itemclae-select ">
                 <span class="input-label">Country</span>
                 <select formControlName="country">
-                <option>Country</option>
                 <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
                 </select>
             </label>
