@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Rx';
 import { ToastController, LoadingController, Platform } from 'ionic-angular';
 import { AdMobPro } from '@ionic-native/admob-pro';
+
 /*
   Generated class for the SharedProvider provider.
 
@@ -83,6 +84,10 @@ export class SharedProvider {
     .map((res:Response) => res.json())
     .catch((error:any) => Observable.throw(error.json().error || 'server error'));
   }
+
+
+
+  
     
   
 

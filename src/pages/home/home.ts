@@ -4,7 +4,7 @@ import { SearchPage } from '../search/search';
 import { SharedProvider } from '../../providers/shared/shared';
 import { AdmobproProvider } from '../../providers/admobpro/admobpro';
 import { AuthProvider } from '../../providers/auth/auth';
-
+import { AppRate } from '@ionic-native/app-rate';
 
 @IonicPage()
 @Component({
@@ -20,11 +20,42 @@ export class HomePage {
     public _sharedService: SharedProvider,
     public _authService: AuthProvider,
     public navCtrl: NavController,
-    private platform: Platform,
+    platform: Platform,
     public _admobpro: AdmobproProvider,
     public events: Events,
-  ) {
+    private appRate: AppRate
     
+  ) {
+    platform.ready().then(() => {
+      appRate.preferences = {
+        openStoreInApp: false,
+        displayAppName: 'Loversify',
+        usesUntilPrompt: 2,
+        promptAgainForEachNewVersion: true,
+        storeAppURL: {
+          ios: '1216856883',
+          android: 'market://details?id=com.loversify.loversify'
+        },
+        customLocale: {
+          title: 'Do you enjoy %@?',
+          message: 'If you enjoy using %@, would you mind taking a moment to rate it? Thanks so much!',
+          cancelButtonLabel: 'No, Thanks',
+          laterButtonLabel: 'Remind Me Later',
+          rateButtonLabel: 'Rate It Now'
+        },
+        callbacks: {
+          onRateDialogShow: function(callback){
+            console.log('rate dialog shown!');
+          },
+          onButtonClicked: function(buttonIndex){
+            console.log('Selected index: -> ' + buttonIndex);
+          }
+        }
+      };
+ 
+      // Opens the rating immediately no matter what preferences you set
+      appRate.promptForRating(true);
+    });
   }
 
   presentPopover(myEvent) {
@@ -36,7 +67,7 @@ export class HomePage {
 
 
   ionViewDidLoad() {
-
+    
     this._admobpro.show();
     
     if (this._authService.loggedIn()) {
