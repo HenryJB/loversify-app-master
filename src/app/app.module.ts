@@ -23,6 +23,7 @@ import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
 import { PipesModule } from '../pipes/pipes.module';
 
+import { AppRate } from '@ionic-native/app-rate';
 
 export function getAuthHttp(http) {
   return new AuthHttp(new AuthConfig({
@@ -70,6 +71,7 @@ export function getAuthHttp(http) {
     Transfer,
     Camera,
     FilePath,
+    AppRate
   ]
 })
 export class AppModule {}
