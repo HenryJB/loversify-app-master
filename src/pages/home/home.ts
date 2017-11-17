@@ -27,15 +27,14 @@ export class HomePage {
     
   ) {
     platform.ready().then(() => {
-
-      this.appRate.preferences = {
+      appRate.preferences = {
         openStoreInApp: false,
         displayAppName: 'Loversify',
         usesUntilPrompt: 2,
         promptAgainForEachNewVersion: true,
         storeAppURL: {
           ios: '1216856883',
-          android: 'market://details?id=io.ionic.starter'
+          android: 'market://details?id=com.loversify.loversify'
         },
         customLocale: {
           title: 'Do you enjoy %@?',
