@@ -159,7 +159,7 @@ export class PostdetailPage {
   postDetails(): string {
     var message = '';
     message += this.details.title+'\n \n';
-    message += this.details.posts[this.currentPage] +'\n \n';
+    message += this.details.description +'\n \n';
     return message.replace(/<[^>]+>/gm, '');
   }
 
