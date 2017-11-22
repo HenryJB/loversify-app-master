@@ -79,14 +79,13 @@
         </ion-row>
     </ion-card>
 
-    <ion-card>
+    <ion-card *ngFor="let block of blocks">
 
         <ion-card-content>
 
-            <div *ngFor="let block of blocks" class="b-b mb-10">
+            <div class="block-info">
                 <h5 class="block-title" *ngIf="block.show_title==1">{{block?.title}}</h5>
                 <div *ngIf="block.show_description==1" [innerHtml]="block?.description | striphtml"></div>
-                <div *ngIf="block.show_body==1" [innerHtml]="block?.body | striphtml"></div>
                 <button *ngIf="block.show_body==1" (click)="readMoreOnblock(block)" class="block-link" ion-button clear>read more</button>
             </div>
         </ion-card-content>

@@ -55,7 +55,9 @@
 
 .block-title {
     font-weight: bold !important;
-    font-size: 16px !important;
+    font-size: 18px !important;
+    border-bottom: solid 1px #eeecec;
+    padding: 2px
 }
 
 .block-link {
@@ -64,4 +66,13 @@
     text-align: left !important;
     text-transform: lowercase !important;
     font-size: 15px !important;
+    margin-top: -15px !important;
+}
+
+.block-info {
+    text-align: center !important;
+}
+
+ion-content {
+    font-size: 20px !important;
 }
