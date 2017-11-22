@@ -22,41 +22,8 @@ export class HomePage {
     public navCtrl: NavController,
     platform: Platform,
     public _admobpro: AdmobproProvider,
-    public events: Events,
-    private appRate: AppRate
-    
-  ) {
-    platform.ready().then(() => {
-      appRate.preferences = {
-        openStoreInApp: false,
-        displayAppName: 'Loversify',
-        usesUntilPrompt: 2,
-        promptAgainForEachNewVersion: true,
-        storeAppURL: {
-          ios: '1216856883',
-          android: 'market://details?id=com.loversify.loversify'
-        },
-        customLocale: {
-          title: 'Do you enjoy %@?',
-          message: 'If you enjoy using %@, would you mind taking a moment to rate it? Thanks so much!',
-          cancelButtonLabel: 'No, Thanks',
-          laterButtonLabel: 'Remind Me Later',
-          rateButtonLabel: 'Rate It Now'
-        },
-        callbacks: {
-          onRateDialogShow: function(callback){
-            console.log('rate dialog shown!');
-          },
-          onButtonClicked: function(buttonIndex){
-            console.log('Selected index: -> ' + buttonIndex);
-          }
-        }
-      };
- 
-      // Opens the rating immediately no matter what preferences you set
-      appRate.promptForRating(true);
-    });
-  }
+    public events: Events 
+  ) {}
 
   presentPopover(myEvent) {
       let popover = this.popoverCtrl.create('MyPopoverPage');

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController, ModalController, Content } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController, ModalController, Content, Platform } from 'ionic-angular';
 import { PostsProvider } from '../../providers/posts/posts';
 import { ISubscription } from "rxjs/Subscription";
 import { SharedProvider } from '../../providers/shared/shared';
@@ -8,7 +8,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import { Clipboard } from '@ionic-native/clipboard';
 import {SearchPage} from '../search/search';
 import {SafehtmlPipe} from '../../pipes/safehtml/safehtml'
-
+import { AppRate } from '@ionic-native/app-rate';
 
 @IonicPage()
 @Component({
@@ -36,7 +36,9 @@ export class PostdetailPage {
     public _sharedService: SharedProvider,
     public _authService: AuthProvider,
     private socialSharing: SocialSharing,
-    private clipboard: Clipboard
+    private clipboard: Clipboard,
+    private appRate: AppRate,
+    public platform: Platform
   ) {
     this.userMeta = this.navParams.get('userMeta');
   }
@@ -151,6 +153,36 @@ export class PostdetailPage {
   share(post, user) {
     this.subscription = this._postsService.sharePost(user, post)
     .subscribe((resp) => {
+      this.platform.ready().then(() => {
+        this.appRate.preferences = {
+          openStoreInApp: false,
+          displayAppName: 'Loversify',
+          usesUntilPrompt: 2,
+          promptAgainForEachNewVersion: true,
+          storeAppURL: {
+            ios: '1216856883',
+            android: 'market://details?id=com.loversify.loversify'
+          },
+          customLocale: {
+            title: 'Do you enjoy %@?',
+            message: 'If you enjoy using %@, would you mind taking a moment to rate it? Thanks so much!',
+            cancelButtonLabel: 'No, Thanks',
+            laterButtonLabel: 'Remind Me Later',
+            rateButtonLabel: 'Rate It Now'
+          },
+          callbacks: {
+            onRateDialogShow: function(callback){
+              console.log('rate dialog shown!');
+            },
+            onButtonClicked: function(buttonIndex){
+              console.log('Selected index: -> ' + buttonIndex);
+            }
+          }
+        };
+   
+        // Opens the rating immediately no matter what preferences you set
+        this.appRate.promptForRating(true);
+      });
     }, (err) => {
       this._sharedService.toaster('Unable to make your share count');
     })
