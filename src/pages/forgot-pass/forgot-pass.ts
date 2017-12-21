@@ -44,6 +44,9 @@ export class ForgotPassPage {
             this.restPasswordForm.reset();
             this._sharedService.toaster('Password rest information has been sent to your email');
             loader.dismiss();
+          } else if (resp.data.status == 400) {
+            loader.dismiss();
+            this._sharedService.toaster('There is no user with such email.');
           } else {
             loader.dismiss();
             this._sharedService.toaster('internal server error');
