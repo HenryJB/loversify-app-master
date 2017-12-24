@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
 import { SharedProvider } from  '../providers/shared/shared';
 
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -41,7 +42,6 @@ export class MyApp {
     } else {
       this.rootPage = 'LoginPage'
     }
-    splashScreen.show();
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -61,7 +61,6 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
-      setTimeout( () => this.splashScreen.hide(), 3000)
       if (this._authService.loggedIn()) {
         this.currentUser = this._authService.currentUser();
        

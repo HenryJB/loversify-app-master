@@ -77,6 +77,7 @@ export class SharedProvider {
 
   // Use the FileTransfer to upload the image
   upload(file) {
+    console.log(file)
     var headers = new Headers();
     headers.append('Content-Type', 'multipart/form-data');
     let options = new RequestOptions({ headers: headers, withCredentials: false });

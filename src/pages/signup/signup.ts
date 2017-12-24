@@ -69,9 +69,12 @@ countries: Array<any>;
             this._authService.saveToken('token', resp.data.token);
             this.events.publish('user:currentUser', this._authService.currentUser())
             loader.dismiss();
+          } else if (resp.status == 400) {
+            loader.dismiss();
+            this._sharedService.toaster('This email address has already been taken.');
           } else {
             loader.dismiss();
-            this._sharedService.toaster('Wrong email and password');
+            this._sharedService.toaster('This email address has already been taken.');
           }
         }, (err) => {
           // Unable to log in

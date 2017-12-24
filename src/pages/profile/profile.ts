@@ -194,6 +194,7 @@ export class ProfilePage {
     fd.append('photoname', 'user-image-' + ".jpg");
     let loader = this._sharedService.loader('Uploading....');
     loader.present();
+    console.log(fd)
     this._sharedService.upload(fd).subscribe((res) => {
       if (res.success) {
         loader.dismissAll();
